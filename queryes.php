@@ -30,4 +30,16 @@ $returnModel = $stmtModelos->fetchAll(PDO::FETCH_ASSOC);
 $stmtStatus = $conn->query("SELECT * FROM status_list ORDER BY status");
 $stmtStatus->execute();
 $returnStatus = $stmtStatus->fetchAll(PDO::FETCH_ASSOC);
+
+//Querye que retorna log de ações de usuários
+
+$stmtLogUuser = $conn->query("SELECT * FROM user_log"); 
+$stmtLogUuser->execute();
+$returLogUser = $stmtLogUuser->fetchAll(PDO::FETCH_ASSOC);
+
+
+//Query que retorna informaçõe para alocamento de palet
+$stmtInformacoesAlocamento = $conn->query("SELECT * FROM listainformacoescadastrar ORDER BY informacao");
+$stmtInformacoesAlocamento->execute();
+$linhasInformacao = $stmtInformacoesAlocamento->fetchAll(PDO::FETCH_ASSOC);
 ?>

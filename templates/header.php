@@ -4,7 +4,6 @@ include_once("models/Message.php");
 include_once("conexao.php");
 // include_once("verify_login.php");
 
-
 $user_log = null;
 if (isset($_SESSION['user'])) {
     $user_log = $_SESSION['user'];
@@ -39,7 +38,6 @@ if (!empty($exibeMensagem['mensage'])) {
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
-
     <title>Document</title>
 
     <!-- Using select 2 -->
@@ -55,35 +53,24 @@ if (!empty($exibeMensagem['mensage'])) {
 </head>
 <header>
     <nav>
-        <ul>
-            <li>
-                <?php if (isset($_SESSION['user'])): ?>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <a href="initial.php">HOME</a>
-                            <a href="logout.php">Sair</a>
-                            <a class="nameInt">
-                                <?= $user_name ?>
-                            </a>
-                            <a class="nameInt">
-
-                            </a>
-                        </div>
-
+        <ul> 
+            <li>                
+                <div class="row">
+                    <div class="col-md-7">
+                        <a href="initial.php">HOME</a>
+                        <a href="logout.php">Sair</a>
+                        <a class="nameInt">
+                            <?= $user_name ?>
+                        </a>                       
                     </div>
-
-                <?php else: ?>
-
-                    <h3 id="ins" style="background-color: blue; padding: 5px 0; color: white;">Insira e-mail e senha para
-                        logar</h3>
-                <?php endif; ?>
+                </div>              
             </li>
         </ul>
     </nav>
-
 </header>
-
-<body onload="resetTime()">
+<!-- Usar o trecho abaixo para expirar a sessão -->
+<!-- <body onload="resetTime()"> -->
+<body>
     <?php if (!empty($exibeMensagem['mensage'])): ?>
 
         <div class="<?php echo $exibeMensagem['type']; ?>">

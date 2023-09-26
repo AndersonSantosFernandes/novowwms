@@ -68,6 +68,7 @@ include_once("permitions.php");
                 <tr>
                     <th>Posição</th>
                     <th>Estado</th>
+                    <th>Data Mov</th>
                     <th>Usuário</th>
                 </tr>
             </thead>
@@ -82,6 +83,7 @@ include_once("permitions.php");
                 <tr>
                     <td>" . $posicao . "</td>
                     <td>" . $estado . "</td>
+                    <td>" . invertDate($dataModificacao) . "</td>
                     <td>" . $usuario . "</td>
                 </tr>
                 

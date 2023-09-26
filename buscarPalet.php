@@ -67,6 +67,7 @@ if ($permD == 1) {
                     <th>Posição</th>
                     <th>Nota fiscal</th>
                     <th>Observação</th>
+                    <th>Status</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -90,8 +91,14 @@ if ($permD == 1) {
                                 <?= $busca['observacao'] ?>
                             </td>
                             <td>
-                                <?php $vlrPosition = $busca['posicao'] ?>
-                                <button <?=$btnDel?> class="btnModal" <?=$btnDel?> onclick="showModal('<?= $vlrPosition ?>','<?=$returnFulName?>')">Desalocar</button>
+                                <?= $busca['status'] ?>
+                            </td>
+                            <td>
+                                <?php $vlrPosition = $busca['posicao'];
+                                        $vlrModelo = $busca['modelo']
+                                
+                                ?>
+                                <button <?=$btnDel?> class="btnModal" <?=$btnDel?> onclick="showModal('<?= $vlrPosition ?>','<?=$returnFulName?>','<?=$vlrModelo?>','<?= $vlrPosition ?>','<?=$returnFulName?>')">Desalocar</button>
 
                                 <form action='editPosition.php' method='post'>
 
@@ -116,7 +123,7 @@ if ($permD == 1) {
     
 </div>
 <script>
-    function showModal(position, nameFull) {
+    function showModal(position, nameFull, model, positionLog, nameLog) {
         var modal = document.getElementById("modal")
 
         modal.innerHTML =
@@ -127,8 +134,11 @@ if ($permD == 1) {
         <form action='process.php' method='post'>
             <input type='hidden' name='action' value='retirarPalet'>
             <input type='hidden' name='estado' value='Livre'>
+            <input type='hidden' name='positionLog' value='${positionLog}'>
+            <input type='hidden' name='nameLog' value='${nameLog}'>
             <input type='hidden' name='fullPosition' value='${position}'>
             <input type="hidden" name="returnFulName" value="${nameFull}">
+            <input type='hidden' name='modelo' value='${model}'>
             <input class='btnModal' type='submit' value='Desalocar'>
         </form>
         <button class="btnModal" onclick="hideModal()">Cancelar</button>

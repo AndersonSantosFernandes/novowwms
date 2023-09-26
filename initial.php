@@ -13,7 +13,7 @@ include_once("permitions.php");
     <div class="row init">
         
         <div class="col-md-4 act">
-        <a href="newUser.php"><button class="btn-actions">Cadastrar usuário</button>
+        <a href="newUser.php"><button class="btn-actions">Administrador</button>
         </div>
         <div class="col-md-4 act">
         <a href="modelos.php"><button class="btn-actions">Cadastrar modelos</button>
@@ -40,7 +40,7 @@ include_once("permitions.php");
         <a href="inserirPalet.php"><button class="btn-actions">Alocar Pallet</button>
         </div>
         <div class="col-md-4 act">
-        <a href=""><button class="btn-actions">Desenvolvendo</button>
+        <a href="dashboard.php"><button class="btn-actions">Dashboard</button>
         </div>  
         <div class="col-md-4 act">
             <a href="setpass.php"><button class="btn-actions">Alterar Senha</button>

@@ -11,7 +11,7 @@ $estado = filter_input(INPUT_GET,"estado");
 
 if($estado == "ocupado"){
 
-    $cabecalho = ["Posicao_Id","Posicao","Modelo","Status","Nota fiscal","Observacao","Estado","Data modificacao","Usuario"];
+    $cabecalho = ["Posicao_Id","Posicao","Modelo","Status","Nota fiscal","Quantidade","Item Modelo","Un Medida","Contratante","Operacao","Origem","Destino","Observacao","Estado","Data modificacao","Usuario"];
 
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename='.$estado.'_'.$datedate.'.csv');
@@ -29,7 +29,7 @@ if($estado == "ocupado"){
     fclose($arquivo);
 }elseif($estado == "livre"){
 
-    $cabecalho = ["Posicao_Id","Posicao","Modelo","Status","Nota fiscal","Observacao","Estado","Data modificacao","Usuario"];
+    $cabecalho = ["Posicao_Id","Posicao","Modelo","Status","Nota fiscal","Quantidade","Item Modelo","Un Medida","Contratante","Operacao","Origem","Destino","Observacao","Estado","Data modificacao","Usuario"];
 
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename='.$estado.'_'.$datedate.'.csv');
@@ -49,7 +49,7 @@ if($estado == "ocupado"){
 
 }elseif($estado == "todas"){
 
-    $cabecalho = ["Posicao_Id","Posicao","Modelo","Status","Nota fiscal","Observacao","Estado","Data modificacao","Usuario"];
+    $cabecalho = ["Posicao_Id","Posicao","Modelo","Status","Nota fiscal","Quantidade","Item Modelo","Un Medida","Contratante","Operacao","Origem","Destino","Observacao","Estado","Data modificacao","Usuario"];
 
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename='.$estado.'_'.$datedate.'.csv');
