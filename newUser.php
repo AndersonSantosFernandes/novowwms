@@ -72,14 +72,7 @@ include_once("permitions.php");
                 </form>
                 <hr>
                 <h3 class="tite">Permissões <br> <a href="user_manage.php">Gerenciar permissões</a> </h3>
-                <hr>
-
-
-                <h3>Log de movimentação</h3>
-
-                <p>Através do log de movimentação é possível obter o relatório com os nomes e ações que usuários fazem.</p>
-
-                <a href="userLog.php">Log de ações no sisteme</a>
+               
                 <hr>
                 <h3>Cadastrar informações para alocamento</h3>
                 <br>
@@ -88,8 +81,8 @@ include_once("permitions.php");
                 <form action="process.php" method="post">
                     <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
                     <input type="hidden" name="informacaoTipo" value="itemModelo"><!--Envia o tipo da informacao-->                    
-                    <input type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input type="submit" value="Salvar">
+                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
+                    <input class='btnModal' type="submit" value="Salvar">
                 </form>
                 <hr>
 
@@ -97,8 +90,8 @@ include_once("permitions.php");
                 <form action="process.php" method="post">
                     <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
                     <input type="hidden" name="informacaoTipo" value="unidade"><!--Envia o tipo da informacao-->                    
-                    <input type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input type="submit" value="Salvar">
+                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
+                    <input class='btnModal' type="submit" value="Salvar">
                 </form>
                 <hr>
 
@@ -106,8 +99,8 @@ include_once("permitions.php");
                 <form action="process.php" method="post">
                     <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
                     <input type="hidden" name="informacaoTipo" value="contratante"><!--Envia o tipo da informacao-->                    
-                    <input type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input type="submit" value="Salvar">
+                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
+                    <input class='btnModal' type="submit" value="Salvar">
                 </form>
                 <hr>
 
@@ -115,28 +108,38 @@ include_once("permitions.php");
                 <form action="process.php" method="post">
                     <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
                     <input type="hidden" name="informacaoTipo" value="operacao"><!--Envia o tipo da informacao-->                    
-                    <input type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input type="submit" value="Salvar">
+                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
+                    <input class='btnModal' type="submit" value="Salvar">
                 </form>
                 <hr>
 
-                <h5>Origem</h5>
+                <h5>Origem / Destino</h5>
                 <form action="process.php" method="post">
                     <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
                     <input type="hidden" name="informacaoTipo" value="origem"><!--Envia o tipo da informacao-->                    
-                    <input type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input type="submit" value="Salvar">
+                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
+                    <input class='btnModal' type="submit" value="Salvar">
                 </form>
                 <hr>
-
-                <h5>Destino</h5>
+                <h5>Status</h5>
                 <form action="process.php" method="post">
-                    <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
-                    <input type="hidden" name="informacaoTipo" value="destino"><!--Envia o tipo da informacao-->                    
-                    <input type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input type="submit" value="Salvar">
-                </form>
-                <hr>
+            <input type="hidden" name="action" value="cadStatus">
+
+            <input class="puts" type="text" name="status" id="" >
+
+            <input class="btnModal" type="submit" value="Salvar">
+        </form>
+
+        <hr>
+        <h5>Modelos</h5>
+        <form action="process.php" method="post">
+            <input type="hidden" name="action" value="cadModelo">
+
+            <input  class="puts" type="text" name="nomeModelo" id="nomeModelo" >
+
+            <input class="btnModal" type="submit" value="Salvar modelo">
+        </form>
+               
 
             <?php else: ?>
 

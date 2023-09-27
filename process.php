@@ -34,6 +34,7 @@ $observacao = filter_input(INPUT_POST, "observacao");
 $estado = filter_input(INPUT_POST, "estado");
 $fullPosition = filter_input(INPUT_POST, "fullPosition");
 $returnFulName = filter_input(INPUT_POST, "returnFulName");
+$direction = filter_input(INPUT_POST, "direcao");
 
 //Gerenciamento de permissões
 $admin = filter_input(INPUT_POST, "admin");
@@ -138,11 +139,9 @@ if ($action === "novaPosicao") {
 
 } elseif ($action == "newPallet") { //Query que salva um pallet na posição
 
-    // echo $positionLog."<br>";
-    // echo $nameLog."<br>";
-    // echo $modelo."<br>";
+   
 
-    $direction = filter_input(INPUT_POST, "direcao");
+    
 
     if ($modelo && $status && $fullPosition) {
         $stmt = $conn->prepare("UPDATE posicoes SET  modelo = :modelo, status = :status, 
@@ -166,21 +165,6 @@ if ($action === "novaPosicao") {
         $stmt->bindParam(":posicao", $fullPosition);
         $stmt->execute();
 
-        if ($returnFulName && $modelo && $fullPosition) {
-            $stmtLog = $conn->prepare("INSERT INTO user_log(usuario, acao, modelo, posicao, dataMod)
-        VALUES(:usuario, 'alocou' , :modelo, :posicao, CURRENT_DATE )");
-
-$stmtLog->bindParam(":usuario", $nameLog);
-    $stmtLog->bindParam(":modelo", $modelo);
-    $stmtLog->bindParam(":posicao", $positionLog);
-
-            // $stmtLog->bindParam(":usuario", $returnFulName);
-            // $stmtLog->bindParam(":modelo", $modelo);
-            // $stmtLog->bindParam(":posicao", $fullPosition);
-            $stmtLog->execute();
-        }
-
-
         $mensagens->setMessage("Salvo com sucesso !!!", "win");
 
         if ($direction == "editado") {
@@ -197,7 +181,6 @@ $stmtLog->bindParam(":usuario", $nameLog);
 
 } elseif ($action == "retirarPalet") {
 
-    // $stmt = $conn->prepare("UPDATE posicoes SET  modelo = '', status = '', nota = '', observacao = '', estado = :estado, dataModificacao = CURRENT_DATE, usuario = :usuario WHERE posicao = :posicao");
    
     $stmt = $conn->prepare("UPDATE posicoes SET  modelo = '', status = '', 
         nota = '', quantidade = '', itemModelo = '', unudMedida = '', contratante = '', operacao = '',
@@ -210,12 +193,7 @@ $stmtLog->bindParam(":usuario", $nameLog);
     $stmt->execute();
 
 
-    $stmtLog = $conn->prepare("INSERT INTO user_log(usuario, acao, modelo, posicao, dataMod)
-    VALUES(:usuario, 'desalocou' , :modelo, :posicao, CURRENT_DATE )");
-    $stmtLog->bindParam(":usuario", $nameLog);
-    $stmtLog->bindParam(":modelo", $modelo);
-    $stmtLog->bindParam(":posicao", $positionLog);
-    $stmtLog->execute();
+   
 
     $mensagens->setMessage("Pallet desalocado com sucesso !!!", "win");
     header("location:buscarPalet.php");
@@ -317,7 +295,7 @@ $stmtLog->bindParam(":usuario", $nameLog);
 
     }
 
-    header("location:modelos.php");
+    header("location:newUser.php");
 } elseif ($action == "setModelo") {
 
     $stmt = $conn->prepare("UPDATE modelos SET modelo = :modelo WHERE id_modelo = :id_modelo");
@@ -353,7 +331,7 @@ $stmtLog->bindParam(":usuario", $nameLog);
 
     }
 
-    header("location:status.php");
+    header("location:newUser.php");
 
 } elseif ($action2 == "delStatus") {
 

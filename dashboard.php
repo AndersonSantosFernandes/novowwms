@@ -7,7 +7,36 @@ include_once("verify_login.php");
 include_once("css/style.php");
 include_once("permitions.php");
 
+//do grafico
+$anguloGrafico = 360; //Angulo do gráfico
+$totalPosicoes = $linhasTotais; //Total de posições
+$ocupadas = $linhasOcupadas;
+$constante = $anguloGrafico / $totalPosicoes; //Constante que multiplica peas posiçõs ocupadas
+// $ocupadas = $return; //Posições ocupadas
+$porcentagemOcupacao = ($ocupadas / $totalPosicoes) * 100; //Porcentagem de ocupação
+$livres = $totalPosicoes - $ocupadas; //Número de posições livres
+$anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
+
+
+
 ?>
+
+<style>
+    .graficoPizza {
+       margin: 0 auto;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+       
+    }
+
+
+    .graficoPizza {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
 <div class="container">
     <h1 class="titulo">Dashboard</h1>
@@ -15,18 +44,38 @@ include_once("permitions.php");
 
         <h3>Índice de ocupação</h3>
         <hr>
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Gráfico  -->
+
+
+                <div class="graficoPizza" style="background-image:conic-gradient(purple 0 <?= $anguloOcupacao ?>deg,orange 0);"> </div>
+
+                <!-- End gráfico -->
+            </div>
+            <div class="col-md-6">
+                <h5>
+                    <?= $linhasTotais ?> posições cadastradas
+                </h5>
+                <h5>
+                    <?= $linhasOcupadas ?> posições ocupadas
+                </h5>
+                <h5>
+                    <?= $linhasLivres ?> posições livres
+                </h5>
+                <hr>
+
+                <h5> <?= number_format($porcentagemOcupação, 2) ?> % de ocupação</h5>
+                <h5> <?= number_format($porcentagemLivre, 2) ?> % de posições livres</h5>
+            </div>
+        </div>
         <!-- Dash de ocupação mostrando porcentagem ocupada e livre -->
-        <h5>
-            <?= $linhasTotais ?> posições cadastradas
-        </h5>
-        <h5>
-            <?= $linhasOcupadas ?> posições ocupadas
-        </h5>
-        <h5>
-            <?= $linhasLivres ?> posições livres
-        </h5>
+
         <hr>
-        <div class="ocupation" style="width: 100%; height: 30px; background-color:white ;">
+
+
+        <!-- <div class="ocupation" style="width: 100%; height: 30px; background-color:white ;">
             <div class="ocupacaoIn"
                 style="width: <?= $porcentagemOcupação ?>%; height: 100%; background-color: green; text-align: center; color: white; ">
                 <strong>
@@ -43,7 +92,7 @@ include_once("permitions.php");
                 </strong>
             </div>
         </div>
-        <hr>
+        <hr> -->
         <h3>Paletes/Status</h3>
 
 
@@ -59,8 +108,8 @@ include_once("permitions.php");
             $stmtCont->execute();
             $linhasCont = $stmtCont->fetch(); //Retorna unidades de cada status 
         
-            if ($linhasCont['COUNT(*)'] > 0) {//Só retorna se existir algum cadastrado com esse status
-
+            if ($linhasCont['COUNT(*)'] > 0) { //Só retorna se existir algum cadastrado com esse status
+        
                 echo $retStat['status'] . '<br>
                 <div class="ocupation" style="width: 100%; height: 30px; background-color:white ;">
                     <div class="ocupacaoIn"

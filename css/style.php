@@ -1,7 +1,7 @@
 <?php
 
 include_once("queryes.php");
-
+include_once("verify_login.php");
  
 ?>
 
@@ -188,8 +188,21 @@ include_once("queryes.php");
         font-weight: bold;
         margin: 5px auto;
     }
+/* grafico pizza */
+.graficoPizza {
+       margin: 0 auto;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+       
+    }
 
 
+    .graficoPizza {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     /*user_manage*/
     table {
         width: 100%;
@@ -210,7 +223,12 @@ include_once("queryes.php");
         background-color: rgb(95, 218, 95);
     }
 
+    /* Tabela com inputs alocar palet */
+    #tbInsert{
+        padding: 3px;
+        border-collapse: separate ;
 
+    }
     /*index*/
     h1 {
         text-align: center;

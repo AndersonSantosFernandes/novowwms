@@ -7,7 +7,6 @@ $(document).ready(function() {
     $('#fullPosition').select2();
     $('#tipo').select2();
     $('#status').select2();
-
     $('#modeloItem').select2();
     $('#medidaUnidade').select2();
     $('#contrat').select2();
