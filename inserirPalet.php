@@ -3,7 +3,7 @@ include_once("templates/header.php");
 include_once("queryes.php");
 include_once("userLogado.php");
 include_once("verify_login.php");
-include_once("css/style.php");
+
 include_once("permitions.php");
 
 ?>
@@ -211,21 +211,6 @@ include_once("permitions.php");
                         </td>
                     </tr>
                 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <br>
 

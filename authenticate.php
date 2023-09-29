@@ -24,6 +24,9 @@ if ($email && $password) {
 
     if ($stmt->rowCount() == 1) {
 
+        
+        
+
         $showEmail = $showName["email"];
         $fullName = $showName["name"] . " " . $showName["lastName"];
 

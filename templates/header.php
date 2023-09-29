@@ -2,14 +2,15 @@
 include_once("global.php");
 include_once("models/Message.php");
 include_once("conexao.php");
-// include_once("verify_login.php");
+include_once("css/style.php");
+include_once("verify_login.php");
 
 $user_log = null;
 if (isset($_SESSION['user'])) {
     $user_log = $_SESSION['user'];
     $user_name = $_SESSION['fulname'];
 }
-$messagen = new Message($BASE_URL);
+$messagen = new Message();
 
 $exibeMensagem = $messagen->getMessage();
 if (!empty($exibeMensagem['mensage'])) {

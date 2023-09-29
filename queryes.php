@@ -1,5 +1,5 @@
 <?php 
-include_once("verify_login.php");
+// include_once("verify_login.php");
 include_once("conexao.php"); 
 
 

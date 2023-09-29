@@ -1,6 +1,6 @@
 <?php include_once("templates/header.php");
 include_once("verify_login.php");
-include_once("css/style.php");
+
 include_once("permitions.php");
 
 
@@ -16,34 +16,36 @@ include_once("permitions.php");
         <a href="newUser.php"><button class="btn-actions">Administrador</button>
         </div>
         <div class="col-md-4 act">
-        <a href="modelos.php"><button class="btn-actions">Cadastrar modelos</button>
+        <a href="newPositions.php"><button class="btn-actions">Posições</button>
         </div>
         <div class="col-md-4 act">
-        <a href="config.php"><button class="btn-actions">Configurar cores</button>
+        <a href="inserirPalet.php"><button class="btn-actions">Alocar Palet</button>
         </div>
         
     </div>
     <div class="row init">
         <div class="col-md-4 act">
-        <a href="newPositions.php"><button class="btn-actions">Cadastrar Posições</button>
+        <a href="buscarPalet.php"><button class="btn-actions">Buscar Palet</button>        
         </div>
         <div class="col-md-4 act">
-        <a href="buscarPalet.php"><button class="btn-actions">Buscar Pallet</button>
+        <a href="dashboard.php"><button class="btn-actions">Dashboard</button>        
         </div>
         <div class="col-md-4 act">
-        <a href="status.php"><button class="btn-actions">Cadastrar Status</button>
+        <a href="config.php"><button class="btn-actions">Configurar cores</button>
         </div>
     </div>
 
     <div class="row init">
         <div class="col-md-4 act">
-        <a href="inserirPalet.php"><button class="btn-actions">Alocar Pallet</button>
+        <a href="setpass.php"><button class="btn-actions">Alterar Senha</button>
+        
         </div>
         <div class="col-md-4 act">
-        <a href="dashboard.php"><button class="btn-actions">Dashboard</button>
+        <a href=""><button class="btn-actions">Implementação</button>
+        
         </div>  
         <div class="col-md-4 act">
-            <a href="setpass.php"><button class="btn-actions">Alterar Senha</button>
+        <a href=""><button class="btn-actions">Implementação</button>  
         </div>        
     </div>
    

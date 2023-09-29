@@ -23,6 +23,13 @@ include_once("verify_login.php");
         --colorBox:<?= $lineColor["colorBox"] ?>;
         --btnMain:<?= $lineColor["btnMain"] ?>;
 
+
+        /* --title-color cor da fonte na header */
+        /* --bg-title-color cor principal */
+        /* --colorRow cor da caixa principal */
+        /* --colorBox  cor da box de cada video */
+        /* --btnMain:cor dos botões maiores */
+
         /*Background images */
         --bgImage: url("imgs/<?= $lineColor['backgroundImage'] ?>.png");
     }
@@ -84,13 +91,20 @@ include_once("verify_login.php");
         justify-content: space-around ;
         align-items: center;
     }
+    button a{
+        color: var(--colorBox);
+    }
+    button a:hover{
+        color: var(--title-color);
+        text-decoration: none;
+    }
 
     .btnModal {
         width: 120px;
         padding: 5px;
         margin: 8px;
         border-radius: 8px;
-        color: var(--bg-title-color);
+        color: var(--colorBox);
         font-weight: bold;
         transition: all 1s;
     }
@@ -188,6 +202,20 @@ include_once("verify_login.php");
         font-weight: bold;
         margin: 5px auto;
     }
+
+    /* links csv pagina newPosition */
+
+.csvLink{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.csvLink i a{
+color: var(--title-color);
+font-family: Arial, Helvetica, sans-serif;
+}
 /* grafico pizza */
 .graficoPizza {
        margin: 0 auto;

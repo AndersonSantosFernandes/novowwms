@@ -10,4 +10,8 @@ $message->setMessage("Sessão encerrada, até a próxima...","win");
 
 header("location: index.php"); //Redireciona para a página de login
 exit;// Encerra o comando php
+
+
+
+
 ?>

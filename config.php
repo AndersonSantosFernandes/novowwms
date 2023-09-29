@@ -3,7 +3,7 @@ include_once("templates/header.php");
 include_once("conexao.php");
 include_once("queryes.php");
 require "verify_login.php";
-include_once("css/style.php");
+
 
 
 

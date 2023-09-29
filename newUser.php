@@ -3,7 +3,7 @@ include_once("templates/header.php");
 include_once("conexao.php");
 include_once("queryes.php");
 include_once("verify_login.php");
-include_once("css/style.php");
+
 include_once("permitions.php");
 
 
@@ -37,7 +37,7 @@ include_once("permitions.php");
                 </div>
                 <br>
 
-<h4>Concessão de permissões</h4>
+                <h4>Concessão de permissões</h4>
                 <div class="row">
 
                     <div class="col-md-2 offset-1 permition-check">
@@ -69,88 +69,155 @@ include_once("permitions.php");
                 </div>
                 <br>
                 <input class="putsBtn" type="submit" value="Cadastrar">
-                </form>
-                <hr>
-                <h3 class="tite">Permissões <br> <a href="user_manage.php">Gerenciar permissões</a> </h3>
-               
-                <hr>
-                <h3>Cadastrar informações para alocamento</h3>
-                <br>
+            </form>
+            <hr>
+            <h3 class="tite">Permissões <br> <a href="user_manage.php">Gerenciar permissões</a> </h3>
 
-                <h5>Item Modelo</h5>
-                <form action="process.php" method="post">
-                    <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
-                    <input type="hidden" name="informacaoTipo" value="itemModelo"><!--Envia o tipo da informacao-->                    
-                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input class='btnModal' type="submit" value="Salvar">
-                </form>
-                <hr>
+            <hr>
+            <h3>Cadastrar informações para alocamento</h3>
+            <br>
 
-                <h5>Unidade de medida</h5>
-                <form action="process.php" method="post">
-                    <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
-                    <input type="hidden" name="informacaoTipo" value="unidade"><!--Envia o tipo da informacao-->                    
-                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input class='btnModal' type="submit" value="Salvar">
-                </form>
-                <hr>
+            <h5>Item Modelo</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="salvarInformacao">
+                <!--Direciona para a query que grava a informação-->
+                <input type="hidden" name="informacaoTipo" value="itemModelo">
+                <!--Envia o tipo da informacao-->
+                <input class="puts" type="text" name="information" id="">
+                <!--Envia o nome da informação-->
+                <input class='btnModal' type="submit" value="Salvar">
+                <button class="btnModal"><a href="modelos.php?editAction=alocamento&tipo=itemModelo">Editar</a></button>
+            </form>
 
-                <h5>Contratante</h5>
-                <form action="process.php" method="post">
-                    <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
-                    <input type="hidden" name="informacaoTipo" value="contratante"><!--Envia o tipo da informacao-->                    
-                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input class='btnModal' type="submit" value="Salvar">
-                </form>
-                <hr>
+            <hr>
 
-                <h5>Operação</h5>
-                <form action="process.php" method="post">
-                    <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
-                    <input type="hidden" name="informacaoTipo" value="operacao"><!--Envia o tipo da informacao-->                    
-                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input class='btnModal' type="submit" value="Salvar">
-                </form>
-                <hr>
+            <h5>Unidade de medida</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="salvarInformacao">
+                <!--Direciona para a query que grava a informação-->
+                <input type="hidden" name="informacaoTipo" value="unidade">
+                <!--Envia o tipo da informacao-->
+                <input class="puts" type="text" name="information" id="">
+                <!--Envia o nome da informação-->
+                <input class='btnModal' type="submit" value="Salvar">
+                <button class="btnModal"><a href="modelos.php?editAction=alocamento&tipo=unidade">Editar</a></button>
+            </form>
 
-                <h5>Origem / Destino</h5>
-                <form action="process.php" method="post">
-                    <input type="hidden" name="action" value="salvarInformacao"><!--Direciona para a query que grava a informação-->
-                    <input type="hidden" name="informacaoTipo" value="origem"><!--Envia o tipo da informacao-->                    
-                    <input class="puts" type="text" name="information" id=""> <!--Envia o nome da informação-->
-                    <input class='btnModal' type="submit" value="Salvar">
-                </form>
-                <hr>
-                <h5>Status</h5>
-                <form action="process.php" method="post">
-            <input type="hidden" name="action" value="cadStatus">
+            <hr>
 
-            <input class="puts" type="text" name="status" id="" >
+            <h5>Contratante</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="salvarInformacao">
+                <!--Direciona para a query que grava a informação-->
+                <input type="hidden" name="informacaoTipo" value="contratante">
+                <!--Envia o tipo da informacao-->
+                <input class="puts" type="text" name="information" id="">
+                <!--Envia o nome da informação-->
+                <input class='btnModal' type="submit" value="Salvar">
+                <button class="btnModal"><a href="modelos.php?editAction=alocamento&tipo=contratante">Editar</a></button>
+            </form>
+            <hr>
 
-            <input class="btnModal" type="submit" value="Salvar">
-        </form>
+            <h5>Operação</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="salvarInformacao">
+                <!--Direciona para a query que grava a informação-->
+                <input type="hidden" name="informacaoTipo" value="operacao">
+                <!--Envia o tipo da informacao-->
+                <input class="puts" type="text" name="information" id="">
+                <!--Envia o nome da informação-->
+                <input class='btnModal' type="submit" value="Salvar">
+                <button class="btnModal"><a href="modelos.php?editAction=alocamento&tipo=operacao">Editar</a></button>
+            </form>
+            <hr>
 
-        <hr>
-        <h5>Modelos</h5>
-        <form action="process.php" method="post">
-            <input type="hidden" name="action" value="cadModelo">
+            <h5>Origem / Destino</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="salvarInformacao">
+                <!--Direciona para a query que grava a informação-->
+                <input type="hidden" name="informacaoTipo" value="origem">
+                <!--Envia o tipo da informacao-->
+                <input class="puts" type="text" name="information" id="">
+                <!--Envia o nome da informação-->
+                <input class='btnModal' type="submit" value="Salvar">
+                <button class="btnModal"><a href="modelos.php?editAction=alocamento&tipo=origem">Editar</a></button>
+            </form>
+            <hr>
 
-            <input  class="puts" type="text" name="nomeModelo" id="nomeModelo" >
+            <h5>Status</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="cadStatus">
 
-            <input class="btnModal" type="submit" value="Salvar modelo">
-        </form>
-               
+                <input class="puts" type="text" name="status" id="">
 
-            <?php else: ?>
+                <input class="btnModal" type="submit" value="Salvar">
+                <button class="btnModal"><a href="modelos.php?editAction=status">Editar </a></button>
+            </form>
 
-                <h1 class="titulo">Somente para administrador</h1>
+            <hr>
 
-            <?php endif; ?>
+            <h5>Modelos</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="cadModelo">
+
+                <input class="puts" type="text" name="nomeModelo" id="nomeModelo">
+
+                <input class="btnModal" type="submit" value="Salvar modelo">
+                <button class="btnModal"><a href="modelos.php?editAction=modelo">Editar</a></button>
+            </form>
+            <hr>
+            <h5>Bloquear posições</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="bloquearPosicao">
+                <input type="hidden" name="estado" value="Bloqueado">
+                <select class="puts" name="id_modelo" id="fullPosition">
+                    <option value="">Selecione</option>
+                    <?php foreach ($returnPosicoes as $posicoes): ?>
+                        <?php extract($posicoes); ?>
+                        <!-- Trcho if faz retornar apenas posições livres -->
+                        <?php if ($estado == "Livre"): ?>
+                            <option value="<?= $posicao_id ?>"><?= $posicao ?> = <?= $estado ?></option>
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+                </select>
+                <input class="btnModal" type="submit" value="Bloquear">
+            </form>
+
+
+
+            <hr>
+            <h5>Desbloquear posições</h5>
+            <form action="process.php" method="post">
+                <input type="hidden" name="action" value="bloquearPosicao">
+                <input type="hidden" name="estado" value="Livre">
+                <select class="puts" name="id_modelo" id="fullPosition">
+                    <option value="">Selecione</option>
+                    <?php foreach ($returnPosicoes as $posicoes): ?>
+                        <?php extract($posicoes); ?>
+                        <!-- Trcho if faz retornar apenas posições bloqueadas -->
+                        <?php if ($estado == "Bloqueado"): ?>
+                            <option value="<?= $posicao_id ?>"><?= $posicao ?> = <?= $estado ?></option>
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+                </select>
+                <input class="btnModal" type="submit" value="Desbloquear">
+            </form>
+
+
+
+            <hr>
+        <?php else: ?>
+
+            <h1 class="titulo">Somente para administrador</h1>
+
+        <?php endif; ?>
 
 
 
 
-        
+
 
     </div>
 

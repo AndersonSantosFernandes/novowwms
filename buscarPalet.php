@@ -3,7 +3,7 @@ include_once("templates/header.php");
 include_once("queryes.php");
 include_once("userLogado.php");
 include_once("verify_login.php");
-include_once("css/style.php");
+
 include_once("permitions.php");
 
 $buscada = filter_input(INPUT_POST, "buscada");
@@ -18,10 +18,12 @@ if ($buscada == null) {
 
 } else {
 
-    $stmt = $conn->prepare("SELECT * FROM posicoes WHERE modelo LIKE ? OR nota LIKE ? OR posicao LIKE ? ");
+    $stmt = $conn->prepare("SELECT * FROM posicoes WHERE modelo LIKE ? OR nota LIKE ? OR posicao LIKE ? OR observacao LIKE ? OR status LIKE ? ");
     $stmt->bindValue(1, "%$buscada%");
     $stmt->bindValue(2, "%$buscada%");
     $stmt->bindValue(3, "%$buscada%");
+    $stmt->bindValue(4, "%$buscada%");
+    $stmt->bindValue(5, "%$buscada%");
     $stmt->execute();
     $rowBuscas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $rowNumber = $stmt->rowCount();
@@ -38,7 +40,7 @@ if ($buscada == null) {
     }
 }
 
-if ($permD == 1) {
+if ($permD == 1) { 
     $btnDel = "";
 } else {
     $btnDel = "style='display: none'";
@@ -47,6 +49,9 @@ if ($permD == 1) {
 ?>
 
 <div class="container">
+    <div id="testando">
+
+    </div>
     <h1 class="titulo">Buscar Pallet</h1>
 
     <div class="registration">
@@ -95,10 +100,11 @@ if ($permD == 1) {
                             </td>
                             <td>
                                 <?php $vlrPosition = $busca['posicao'];
-                                        $vlrModelo = $busca['modelo']
+                                        // $vlrModelo = $busca['modelo']
                                 
                                 ?>
-                                <button <?=$btnDel?> class="btnModal" <?=$btnDel?> onclick="showModal('<?= $vlrPosition ?>','<?=$returnFulName?>','<?=$vlrModelo?>','<?= $vlrPosition ?>','<?=$returnFulName?>')">Desalocar</button>
+                                 <button <?=$btnDel?> class="btnModal" <?=$btnDel?> onclick="showModal('<?=$vlrPosition ?>','<?=$returnFulName?>')">Desalocar</button>
+
 
                                 <form action='editPosition.php' method='post'>
 
@@ -123,7 +129,7 @@ if ($permD == 1) {
     
 </div>
 <script>
-    function showModal(position, nameFull, model, positionLog, nameLog) {
+    function showModal(position, nameFull) {
         var modal = document.getElementById("modal")
 
         modal.innerHTML =
@@ -134,11 +140,11 @@ if ($permD == 1) {
         <form action='process.php' method='post'>
             <input type='hidden' name='action' value='retirarPalet'>
             <input type='hidden' name='estado' value='Livre'>
-            <input type='hidden' name='positionLog' value='${positionLog}'>
-            <input type='hidden' name='nameLog' value='${nameLog}'>
+           
+            
             <input type='hidden' name='fullPosition' value='${position}'>
-            <input type="hidden" name="returnFulName" value="${nameFull}">
-            <input type='hidden' name='modelo' value='${model}'>
+            <input type='hidden' name='returnFulName' value='${nameFull}'>
+            
             <input class='btnModal' type='submit' value='Desalocar'>
         </form>
         <button class="btnModal" onclick="hideModal()">Cancelar</button>
@@ -152,4 +158,6 @@ if ($permD == 1) {
         modal.innerHTML =`  `
     }
 </script>
-<?php include_once("templates/footer.php") ?>
+<?php include_once("templates/footer.php");
+
+?>

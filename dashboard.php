@@ -4,12 +4,12 @@
 include_once("templates/header.php");
 include_once("queryeDash.php");
 include_once("verify_login.php");
-include_once("css/style.php");
+
 include_once("permitions.php");
 
 //do grafico
 $anguloGrafico = 360; //Angulo do gráfico
-$totalPosicoes = $linhasTotais; //Total de posições
+$totalPosicoes = $linhasUtilizaveis; //Total de posições utilizaveis ocupadas ou livres
 $ocupadas = $linhasOcupadas;
 $constante = $anguloGrafico / $totalPosicoes; //Constante que multiplica peas posiçõs ocupadas
 // $ocupadas = $return; //Posições ocupadas
@@ -36,6 +36,19 @@ $anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
         justify-content: center;
         align-items: center;
     }
+
+    #iconeOcupacao{
+        width: 15px;
+        height: 15px;
+        background-color: purple;
+    }
+    #iconeLivre{
+        width: 15px;
+        height: 15px;
+        background-color: orange;
+        
+    }
+    
 </style>
 
 <div class="container">
@@ -49,7 +62,6 @@ $anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
             <div class="col-md-6">
                 <!-- Gráfico  -->
 
-
                 <div class="graficoPizza" style="background-image:conic-gradient(purple 0 <?= $anguloOcupacao ?>deg,orange 0);"> </div>
 
                 <!-- End gráfico -->
@@ -59,15 +71,21 @@ $anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
                     <?= $linhasTotais ?> posições cadastradas
                 </h5>
                 <h5>
+                    <?= $linhasUtilizaveis ?> posições utilizaveis
+                </h5>
+                <h5>
                     <?= $linhasOcupadas ?> posições ocupadas
                 </h5>
                 <h5>
                     <?= $linhasLivres ?> posições livres
                 </h5>
+                <h5>
+                    <?= $linhasBloqueados ?> posições Bloqueadas
+                </h5>
                 <hr>
 
-                <h5> <?= number_format($porcentagemOcupação, 2) ?> % de ocupação</h5>
-                <h5> <?= number_format($porcentagemLivre, 2) ?> % de posições livres</h5>
+                <h5> <div id="iconeOcupacao"></div> <?= number_format($porcentagemOcupação, 2) ?> % de ocupação</h5>
+                <h5> <div id="iconeLivre"></div> <?= number_format($porcentagemLivre, 2) ?> % de posições livres</h5>
             </div>
         </div>
         <!-- Dash de ocupação mostrando porcentagem ocupada e livre -->
@@ -111,13 +129,10 @@ $anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
             if ($linhasCont['COUNT(*)'] > 0) { //Só retorna se existir algum cadastrado com esse status
         
                 echo $retStat['status'] . '<br>
-                <div class="ocupation" style="width: 100%; height: 30px; background-color:white ;">
-                    <div class="ocupacaoIn"
-                        style="width: ' . $linhasCont['COUNT(*)'] . '%; height: 100%; background-color: green; text-align: center; color: white; ">
-                        <strong>
-                            ' . $linhasCont['COUNT(*)'] . ' 
-                        </strong>
-                    </div>
+                <div class="ocupation" style="width: 100%; height: 30px; background-color:white ; text-align: center;">
+                <strong>
+                ' . $linhasCont['COUNT(*)'] . ' 
+            </strong>
                 </div>
                 ';
             }

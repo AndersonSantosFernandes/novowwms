@@ -1,7 +1,6 @@
 <?php
-include_once("global.php");
+
 include_once("conexao.php");
-include_once("verify_login.php");
 include_once("models/Message.php");
 
 $mensagens = new Message();
@@ -60,17 +59,16 @@ $btnMain = filter_input(INPUT_POST, "btnMain");
 // Cadastrar novo modelo
 $cadNewModel = filter_input(INPUT_POST, "nomeModelo");
 
-$id_modelo = filter_input(INPUT_POST, "id_modelo");
+$id_modelo = filter_input(INPUT_POST, "id_modelo");//recebe posicao_id em outro processamento
 $status_id = filter_input(INPUT_POST, "status_id");
 
-//Log de ações
-$positionLog = filter_input(INPUT_POST,"positionLog");
-$positionLog = $fullPosition;
-$nameLog = filter_input(INPUT_POST,"nameLog");
 
 //Tras informações para alocamento de palet. Vem da página newUser.php
 $informacaoTipo = filter_input(INPUT_POST, "informacaoTipo");
 $information = filter_input(INPUT_POST, "information");
+
+
+
 
 
 if ($admin == null) {
@@ -183,7 +181,7 @@ if ($action === "novaPosicao") {
 
    
     $stmt = $conn->prepare("UPDATE posicoes SET  modelo = '', status = '', 
-        nota = '', quantidade = '', itemModelo = '', unudMedida = '', contratante = '', operacao = '',
+        nota = '', quantidade = 0, itemModelo = '', unudMedida = '', contratante = '', operacao = '',
         origem = '', destino = '', observacao = '', estado = :estado, 
         dataModificacao = CURRENT_DATE, usuario = :usuario WHERE posicao = :posicao");
    
@@ -377,6 +375,36 @@ if($information){
 }
 
 header("location:newUser.php");
+}elseif($action == "editInfAloc"){
+// echo $id_modelo . "<br>" . $informacaoTipo . "<br>" . $information;
+$modeloUp = strtoupper($id_modelo);
+$stmt = $conn->prepare("UPDATE listainformacoescadastrar SET tipo_informacao = :tipo_informacao , informacao = :informacao WHERE informacao_id = :informacao_id");
+$stmt->bindParam(":tipo_informacao",$informacaoTipo);
+$stmt->bindParam(":informacao",$information);
+$stmt->bindParam(":informacao_id", $modeloUp);
+$stmt->execute();
+
+$mensagens->setMessage("Alterado com sucesso para " .$information. " <strong>!</strong>", "win");
+
+header("location:newUser.php");
+
+}elseif($action == "bloquearPosicao"){
+
+    if($id_modelo){
+
+        $stmt = $conn->prepare("UPDATE posicoes SET estado = :estado WHERE posicao_id = :posicao_id");
+        $stmt->bindParam(":estado",$estado);
+        $stmt->bindParam(":posicao_id",$id_modelo);
+        $stmt->execute();
+        
+        $mensagens->setMessage("Posição está ".$estado,"win");
+
+    }else{
+        $mensagens->setMessage("Selecione uma opção na lista","fall");
+    }
+
+header("location:newUser.php");
+
 }
 
 

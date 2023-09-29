@@ -1,6 +1,7 @@
 <?php 
 
 include_once("queryes.php"); 
+// include_once("verify_login.php");
 
 
 $diferenca = strtotime(" -5 hours ");

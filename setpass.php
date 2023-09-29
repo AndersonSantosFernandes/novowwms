@@ -1,7 +1,7 @@
 <?php include_once("templates/header.php");
 
 include_once("verify_login.php");
-include_once("css/style.php");
+
 
 
 ?>

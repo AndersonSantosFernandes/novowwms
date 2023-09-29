@@ -2,7 +2,7 @@
 include_once("templates/header.php");
 include_once("conexao.php");
 include_once("permitions.php");
-include_once("css/style.php");
+
 include_once("permitions.php");
 
 if ($_GET['a'] == 1) {

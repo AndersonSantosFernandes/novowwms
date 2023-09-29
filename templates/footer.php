@@ -13,6 +13,7 @@ $(document).ready(function() {
     $('#operat').select2();
     $('#origem').select2();
     $('#destino').select2();
+    $('#editAlocamento').select2()
 });
 
 //===Inicio=============Trcho de código que derruba a sessão após ficar certo tempo inativo
