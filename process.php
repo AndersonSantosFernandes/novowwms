@@ -97,19 +97,12 @@ if ($delete == null) {
     $pdelete = 1;
 }
 
-function number($num) // Função acrescenta um zero a esquerda se o valor for menor que dez
-{
-    if ($num < 10) {
-        return $num = "0" . $num;
-    } else {
-        return $num;
-    }
-}
+
 
 if ($action === "novaPosicao") {
     // Verifica se estão vindo todas as informaç~es dos inputs
     if ($rua && $posicao && $altura && $profundidade) {
-        $newPosition = number($rua) . "-" . number($posicao) . "-" . number($altura) . "-" . $profundidade;
+        $newPosition = $rua . " - " . $posicao . " - " . $altura . " - " . $profundidade;
 
         //Esta querye de validação impede duplicidade de posições
         $confimaPosicao = $conn->prepare("SELECT * FROM posicoes WHERE posicao = :posicao");
@@ -133,7 +126,7 @@ if ($action === "novaPosicao") {
 
     }
 
-    header("location:newPositions.php");
+    header("location:newUser.php");
 
 } elseif ($action == "newPallet") { //Query que salva um pallet na posição
 
@@ -303,7 +296,7 @@ if ($action === "novaPosicao") {
 
     $mensagens->setMessage("Alterado com cucesso para <strong>" . $modelo . "!</strong>", "win");
 
-    header("location:modelos.php");
+    header("location:newUser.php");
 
 } elseif ($action2 == "delModelo") {
 

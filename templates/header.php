@@ -26,6 +26,7 @@ if (!empty($exibeMensagem['mensage'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../imgs/empty.jpg" type="image/x-icon">
     <!--Link bootstrap-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.css"
         integrity="sha512-drnvWxqfgcU6sLzAJttJv7LKdjWn0nxWCSbEAtxJ/YYaZMyoNLovG7lPqZRdhgL1gAUfa+V7tbin8y+2llC1cw=="
@@ -69,6 +70,7 @@ if (!empty($exibeMensagem['mensage'])) {
         </ul>
     </nav>
 </header>
+
 <!-- Usar o trecho abaixo para expirar a sessão -->
 <!-- <body onload="resetTime()"> -->
 <body>

@@ -65,6 +65,8 @@ $anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
                 <div class="graficoPizza" style="background-image:conic-gradient(purple 0 <?= $anguloOcupacao ?>deg,orange 0);"> </div>
 
                 <!-- End gráfico -->
+
+                <p>* A porcentagem de ocupação é calculada apesas sobre as posições marcadas como utilizáveis, não contando com as bloqueadas e de picking</p>
             </div>
             <div class="col-md-6">
                 <h5>
@@ -81,6 +83,9 @@ $anguloOcupacao = $ocupadas * $constante; // Angulo das posições ocupadas.
                 </h5>
                 <h5>
                     <?= $linhasBloqueados ?> posições Bloqueadas
+                </h5>
+                <h5>
+                    <?= $linhasPicking ?> posições de picking
                 </h5>
                 <hr>
 

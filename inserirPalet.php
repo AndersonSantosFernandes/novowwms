@@ -8,16 +8,10 @@ include_once("permitions.php");
 
 ?>
 
-<div class="container">
+<div class="container" >
     <h1 class="titulo">Inserir Pallet</h1>
-
-    <div class="registration">
-
+    <div class="registration" style="overflow-x: scroll ;">
         <?php if ($permR == 1): ?>
-
-
-
-
             <!-- Formulário para salvar um pallet em uma posição livre  -->
             <form action="process.php" method="post">
                 <input type="hidden" name="action" value="newPallet">
@@ -228,7 +222,7 @@ include_once("permitions.php");
         <?php endif; ?>
 
 
-        <table>
+        <table >
 
 
             <thead>

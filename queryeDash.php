@@ -24,12 +24,17 @@ $stmtBloqueados = $conn->query("SELECT * FROM posicoes WHERE estado = 'Bloqueado
 $stmtBloqueados->execute();
 $linhasBloqueados = $stmtBloqueados->rowCount();
 
+// Querye que retorna a soma de posições de picking
+$stmtPicking = $conn->query("SELECT * FROM posicoes WHERE estado = 'Picking'");
+$stmtPicking->execute();
+$linhasPicking = $stmtPicking->rowCount();
+
 // Querye para retornar todos os status
 $stmtStatus = $conn->query("SELECT * FROM status_list ORDER BY status");
 $stmtStatus->execute();
 $returnStatus = $stmtStatus->fetchAll(PDO::FETCH_ASSOC);
 
-$linhasUtilizaveis = $linhasTotais - $linhasBloqueados;
+$linhasUtilizaveis = $linhasTotais - ($linhasBloqueados + $linhasPicking);
 
 $porcentagemOcupação = ($linhasOcupadas / $linhasUtilizaveis) * 100 ;
 $porcentagemLivre = ($linhasLivres / $linhasUtilizaveis) * 100 ;

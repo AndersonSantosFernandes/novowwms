@@ -134,25 +134,33 @@ include_once("verify_login.php");
     }
 
     /*header*/
-    header {
-        background-color: var(--bg-title-color);
+    header { 
+        position: sticky ;
+        top: 0px;
+        width: 100%;
+        /* background-color: var(--bg-title-color); */
+        background-image: linear-gradient(var(--bg-title-color),var(--bg-title-color), white,var(--bg-title-color), var(--bg-title-color));
         padding: 5px 0;
         text-align: center;
-        vertical-align: middle;
+        z-index: 100;
+        /* margin-bottom: 10px; */
+
+        /* vertical-align: middle; */
 
     }
 
     header nav ul li a {
         color: var(--title-color);
-        font-size: 22px;
+        font-size: 25px;
         text-decoration: none;
         margin: 0 20px;
+        font-weight: bold;
         transition: all 1s;
     }
 
     header nav ul li a:hover {
         color: var(--title-color);
-        font-size: 22px;
+        /* font-size: 26px; */
         text-decoration: none;
         text-shadow: 0 0 5px var(--title-color);
     }
@@ -161,7 +169,7 @@ include_once("verify_login.php");
         color: var(--title-color);
     }
 
-    .proc {
+    /* .proc {
         border-radius: 5px;
         height: 30px;
         padding: 5px;
@@ -171,14 +179,14 @@ include_once("verify_login.php");
         width: 30px;
         height: 30px;
         border-radius: 5px;
-    }
+    } */
 
     /*Coments.php */
 
-    .nomeFilme {
+    /* .nomeFilme {
         font-weight: bold;
         font-size: 22px;
-    }
+    } */
 
     /*warning-message*/
     .win {
@@ -280,11 +288,12 @@ font-family: Arial, Helvetica, sans-serif;
         width: 90%;
         height: 90%;
         border: none;
-        background-color: var(--btnMain);
+        /* background-color: var(--btnMain); */
+        background-image: linear-gradient( var(--btnMain),white, var(--btnMain));
         box-shadow: inset 0 0 12px var(--standard-color);
         border-radius: 15px;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 26px;
         transition: all 1s;
     }
 
@@ -296,7 +305,7 @@ font-family: Arial, Helvetica, sans-serif;
     .registration {
         border: 1px solid var(--standard-color);
         margin: 30px auto;
-        background-color: var(--colorRow);
+        background-color: var(--colorRow); 
         padding: 10px;
         opacity: 0.9;
     }
@@ -309,7 +318,7 @@ font-family: Arial, Helvetica, sans-serif;
         width: 300px;
         margin-bottom: 18px;
         border-radius: 6px;
-        /* border: none; */
+        border: none;
         background-color: white;
         padding: 3px;
     }
@@ -331,7 +340,7 @@ font-family: Arial, Helvetica, sans-serif;
     /*my.php */
 
 
-    .public {
+    /* .public {
         background-color: #82ec65;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
@@ -339,7 +348,7 @@ font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
         font-weight: bold;
         height: 30px;
-    }
+    } */
 
     .private {
         background-color: #fba2a2;
@@ -484,7 +493,7 @@ font-family: Arial, Helvetica, sans-serif;
 
         .registration {
             margin-bottom: 35px;
-            /* width: max-content; */
+            
         }
 
         .images {
