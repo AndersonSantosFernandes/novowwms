@@ -20,7 +20,7 @@ if (!empty($exibeMensagem['mensage'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="pt br">
+<html lang="pt br"> 
 
 <head>
     <meta charset="UTF-8">

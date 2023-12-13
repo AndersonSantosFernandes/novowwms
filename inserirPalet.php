@@ -173,7 +173,7 @@ include_once("permitions.php");
                                 <?php // Lista de itens modelo 
                                     echo ' <option value=""></option>';
                                     foreach ($linhasInformacao as $linhaInformacao) {
-                                        extract($linhaInformacao);
+                                         extract($linhaInformacao);
                                         if ($tipo_informacao == "origem") {
                                             echo "<option value='" . $informacao . "'>" . $informacao . "</option>";
                                         }
