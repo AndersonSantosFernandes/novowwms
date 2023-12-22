@@ -49,12 +49,24 @@ include_once("verify_login.php");
         <?php endif; ?>
     }
 
-    .container {
-        /* position: relative; */
+    .containerPalet {
+        background-color: aliceblue;
+        margin: 15px 0;
+        padding-bottom: 20px;
     }
 
     /*Modal deletar vídeo*/
 
+    #formPallete{
+        width: 700px;
+        padding: 6px;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        margin-left: -350px;
+        background-color: var(--colorRow);
+        z-index: 10;
+    }
 
    #modal{
     position: fixed;
@@ -102,7 +114,7 @@ include_once("verify_login.php");
     .btnModal {
         width: 120px;
         padding: 5px;
-        margin: 8px;
+        margin:0 8px;
         border-radius: 8px;
         color: var(--colorBox);
         font-weight: bold;
