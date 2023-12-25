@@ -108,7 +108,7 @@ if (isset($_SESSION['palet'])) {
         <table id="tbPalet">
             <tr>
                 <th>PALETE ID</th>
-                <th>INSERIR SERIAL</th>
+                <th>SERIAL</th>
                 <th>MODELO</th>
                 <th>DELETAR PALETE</th>
                 <th>DATA</th>
@@ -139,7 +139,7 @@ if (isset($_SESSION['palet'])) {
                         </strong>
                     </td>
                     <td>
-                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal" <?= $desliga ?>>Palete</button></a>
+                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal" <?= $desliga ?>>Inserir</button></a>
 
                     </td>
                     <td>
