@@ -6,11 +6,12 @@ include_once("permitions.php");
 
 ?>
 
+
 <div class="container">
     <h1 class="titulo" >Controle de Estoque</h1>
 
    
-    <div class="row init">
+    <!-- <div class="row init">
         
         <div class="col-md-4 act">
         <a href="newUser.php"><button class="btn-actions">Administrador</button>
@@ -47,7 +48,7 @@ include_once("permitions.php");
         <div class="col-md-4 act">
         <a href="getserial.php"><button class="btn-actions">Busca serial</button>  
         </div>        
-    </div>
+    </div> -->
    
    
 </div>
