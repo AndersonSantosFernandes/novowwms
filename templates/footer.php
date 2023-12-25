@@ -34,7 +34,7 @@ cont = cont - 1
 
 if(cont == 0){
 
-    alert(time + " minutos de inatividade. \n Sessão encerrada.")
+    // alert(time + " minutos de inatividade. \n Sessão encerrada.")
     
     shows.innerHTML = 
 `
@@ -47,7 +47,7 @@ else{
     if(cont < 20){
         shows.innerHTML = 
 `
-<h4>A sessão vai expirar em ${cont} segundos</h4>
+<h5>A sessão vai expirar em ${cont} segundos</h5>
 `
     }
 
