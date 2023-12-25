@@ -1,6 +1,7 @@
 <?php 
 
 include_once("conexao.php");
+include_once("global.php");
 
 $userLog = $_SESSION['user'];
 

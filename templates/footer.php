@@ -17,39 +17,43 @@ $(document).ready(function() {
 });
 
 //===Inicio=============Trcho de código que derruba a sessão após ficar certo tempo inativo
-// num = 300
+num = 300
 
-// time = num/60
 
-// function resetTime(){
-//     cont = num
-// }
+time = num/60
 
-// function contador()
-// {
-//     var tmp = document.getElementById("tmp")
-// var shows = document.getElementById("show")
-// cont = cont - 1
+function resetTime(){
+    cont = num
+}
 
-// if(cont == 0){
+function contador()
+{
+    var tmp = document.getElementById("tmp")
+var shows = document.getElementById("show")
+cont = cont - 1
 
-//     alert(time + " minutos de inatividade. \n Sessão encerrada.")
+if(cont == 0){
+
+    alert(time + " minutos de inatividade. \n Sessão encerrada.")
     
-//     shows.innerHTML = 
-// `
-// <meta http-equiv="refresh" content="0; logout.php">
-// `
-// clearInterval(timeEnd)
-// }
-// else{
+    shows.innerHTML = 
+`
+<meta http-equiv="refresh" content="0; logout.php">
+`
+clearInterval(timeEnd)
+}
+else{
 
-// shows.innerHTML = 
-// `
-// Tempo ${cont}
-// `
-// }
-// }
-// var timeEnd = setInterval(contador,1000)
+    if(cont < 20){
+        shows.innerHTML = 
+`
+<h4>A sessão vai expirar em ${cont} segundos</h4>
+`
+    }
+
+}
+}
+var timeEnd = setInterval(contador,1000)
 //========Fim==================derruba sessão=========================
 </script>
 </body>

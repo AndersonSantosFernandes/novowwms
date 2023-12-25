@@ -10,6 +10,7 @@ $action = filter_input(INPUT_POST, "action");
 
 $palete_id = filter_input(INPUT_POST, "paleteId");
 
+$modelo = filter_input(INPUT_POST, "modelo");
 $serial = filter_input(INPUT_POST, "serial");
 $actionGet = filter_input(INPUT_GET, "actionGet");
 $serial_id = filter_input(INPUT_GET, "serial_id");
@@ -20,11 +21,18 @@ $sairPalet = filter_input(INPUT_GET,"actionPalet");
 
 if ($action == "novoPalete") {
 
-    $stmt = $conn->prepare("INSERT INTO paletes (dataPalete) VALUES(CURRENT_DATE)");
-    $stmt->execute();
+    if(!$modelo){
+        $mensagens->setMessage("Selecione um modelo","fall");
+    }else{
+        $stmt = $conn->prepare("INSERT INTO paletes (modelo ,dataPalete) VALUES(:modelo, CURRENT_DATE)");
+        $stmt->bindParam(":modelo",$modelo);
+        $stmt->execute();
+    
+    }
 
+    
     header("location:paletes.php");
-    // echo "NOVO palete";
+
 
 } elseif ($action == "insereSerial") {
     // Deve vir o id do palet e o serial por post
@@ -41,7 +49,7 @@ if ($action == "novoPalete") {
         //Se o serial já estiver neste ou em outro palet, a inserção não acontece
         if ($linhaVerifica > 0) {
 
-            $mensagens->setMessage("O serial ".$serial  ." já está inserido","fall");
+            $mensagens->setMessage("O serial ".$serial  ." está inserido em outro palete","fall");
             header("location:paletes.php");
 
         } else {

@@ -1,4 +1,5 @@
 <?php
+include_once("templates/header.php");
 include_once("conexao.php");
 include_once("global.php");
 include_once("querys.php");
@@ -13,7 +14,7 @@ if (isset($_SESSION['palet'])) {
 } else {
     $_SESSION['palet'] = null;
 }
-include_once("templates/header.php");
+
 ?>
 
 <!-- Se estiver algum palete selecionado é criada uma sessao com  esse id  -->
@@ -79,11 +80,28 @@ include_once("templates/header.php");
 <?php endif; ?>
 <!-- ======================================== -->
 <div class="container">
-    <h1 class="titulo">Anderson</h1>
+    <h1 class="titulo">Criar palete</h1>
     <div class="registration">
         <form action="procesPalet.php" method="post">
             <input type="hidden" name="action" value="novoPalete">
-            <input class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
+
+            <div class="cria__palete">
+
+                <input class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
+
+                <!-- <label for="modelo">Modelo</label><br> -->
+                <select <?= $desliga ?> class="puts" name="modelo" id="modelo"
+                    title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo">
+                    <option value="">Selecione um modelo</option>
+                    <?php foreach ($returnModel as $retMod): ?>
+                        <?php extract($retMod) ?>
+
+                        <option value="<?= $modelo ?>"><?= $modelo ?></option>
+
+                    <?php endforeach; ?>
+
+                </select>
+            </div>
         </form>
 
         <hr>
@@ -91,11 +109,29 @@ include_once("templates/header.php");
             <tr>
                 <th>PALETE ID</th>
                 <th>INSERIR SERIAL</th>
+                <th>MODELO</th>
                 <th>DELETAR PALETE</th>
                 <th>DATA</th>
             </tr>
             <?php foreach ($retornaPalete as $retPal): ?>
                 <?php extract($retPal) ?>
+
+                <?php 
+                                $stmt = $conn->prepare("SELECT * FROM posicoes WHERE palete_id = :palete_id");
+                                $stmt->bindParam(":palete_id", $palete_id);
+                                $stmt->execute();
+                                $linhas = $stmt->rowCount();
+
+                                if($linhas > 0){
+                                    $desabilita = "disabled";
+                                    $valorBtn = "Já alocado";
+                                }else{
+                                    $desabilita = ""; 
+                                    $valorBtn = "Alocar palete";
+                                }
+                                ?>
+
+
                 <tr>
                     <td>
                         <strong>
@@ -103,12 +139,21 @@ include_once("templates/header.php");
                         </strong>
                     </td>
                     <td>
-                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button class="btnModal" <?= $desliga ?>>Palete</button></a>
+                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal" <?= $desliga ?>>Palete</button></a>
 
                     </td>
                     <td>
-                        <a href="procesPalet.php?actionGet=delPalete&serial_id=<?= $palete_id ?>"><button class="btnModal"
+                        <?= $modelo ?>
+                    </td>
+                    <td>
+                        <a href="procesPalet.php?actionGet=delPalete&serial_id=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal"
                                 <?= $desliga ?>>Deletar Palete</button></a>
+
+                              
+
+
+                                <a href="inserirPalet.php?paleteId=<?= $palete_id ?>&model=<?= $modelo ?>"><button <?= $desabilita ?> class="btnModal"
+                                <?= $desliga ?>><?= $valorBtn ?></button></a>
                     </td>
                     <td>
                         <strong>

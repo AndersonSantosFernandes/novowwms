@@ -1,11 +1,18 @@
 <?php
-
+include_once("templates/header.php");
 include_once("queryes.php");
 include_once("userLogado.php");
-include_once("verify_login.php");
-
 include_once("permitions.php");
-include_once("templates/header.php");
+
+$paleteId = filter_input(INPUT_GET,"paleteId");
+$model = filter_input(INPUT_GET,"model");
+
+if(isset($model)){
+$insertModel = $model;
+}else{
+    $insertModel = "";
+}
+
 ?>
 
 <div class="container" >
@@ -27,9 +34,9 @@ include_once("templates/header.php");
                         <td>
                             <!-- Select que envia o modelo de equipamento  -->
                             <label for="modelo">Modelo</label><br>
-                            <select class="puts" name="modelo" id="modelo"
-                                title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo">
-                                <option value=""></option>
+                            <select  class="puts" name="modelo" id="modelo"
+                                title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo" aria-readonly="" >
+                                <option readonly value="<?= $insertModel ?>"><?= $insertModel ?></option>
                                 <?php foreach ($returnModel as $retMod): ?>
                                     <?php extract($retMod) ?>
 
@@ -191,17 +198,17 @@ include_once("templates/header.php");
                                     foreach ($returnPosicoes as $posicoes) {
                                         extract($posicoes);
                                         if ($estado == "Livre") {
-                                            echo "<option value='" . $posicao . "'>" . $posicao . " - " . $estado . "</option>
-                                
-                                ";
+                                            echo "<option value='" . $posicao . "'>" . $posicao . " - " . $estado . "</option>";
                                         }
-
                                     }
                                     ?>
                             </select>
                         </td>
                         <td>
-
+                                <!-- Envia a id do palete com seriais vindo de paletes.php -->
+                            <label for="palete_id">Palete ID</label><br>
+                            <input class="puts" type="number" name="palete_id" id="palete_id" min="1" readonly value="<?= $paleteId ?>">
+     
                         </td>
                     </tr>
                 </table>

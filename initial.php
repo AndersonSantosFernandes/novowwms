@@ -45,7 +45,7 @@ include_once("permitions.php");
         
         </div>  
         <div class="col-md-4 act">
-        <a href=""><button class="btn-actions">Implementação</button>  
+        <a href="getserial.php"><button class="btn-actions">Busca serial</button>  
         </div>        
     </div>
    

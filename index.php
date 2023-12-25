@@ -2,9 +2,7 @@
 
 include_once("global.php");
 include_once("models/Message.php");
-// if (isset($_SESSION['user'])) {
-//     header("location:initial.php");
-// }
+
 
 $messagen = new Message();
 $exibeMensagem = $messagen->getMessage();
