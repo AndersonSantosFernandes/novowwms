@@ -16,12 +16,12 @@ $stmt->execute();
 $retorno = $stmt->fetch(PDO::FETCH_ASSOC);
 $linha = $stmt->rowCount();
 
-if($linha > 0){
+if ($linha > 0) {
+    $display1 = "none";
     $display = "block";
-}else{
+} else {
+    $display1 = "block";
     $display = "none";
-    $mensagens->setMessage("Serial não encontrado em uma posição","fall");
-  
 }
 
 ?>
@@ -34,7 +34,9 @@ if($linha > 0){
             <input class="puts" type="text" name="getSerial" id="getSerial" autofocus>
             <input type="submit" value="Pesquisar" class="btnModal">
         </form>
-
+        <div id="mostrar" style="display: <?= $display1 ?>;">
+            <h4>Serial não encontrado entre as posições</h4>
+        </div>
         <div class="returnSerial" style="display: <?= $display ?>;">
             <label for="posicao">Posição</label>
             <input class="puts" type="text" name="" id="posicao" value="<?= $retorno['posicao'] ?>" readonly>
