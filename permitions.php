@@ -2,8 +2,9 @@
 
  
 include_once("conexao.php");
+include_once("global.php");
 
-include_once("verify_login.php");
+// include_once("verify_login.php");
 
 $user = $_SESSION['user'];
 

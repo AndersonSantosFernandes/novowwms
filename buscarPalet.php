@@ -71,6 +71,7 @@ if ($permD == 1) {
                     <th>Modelo</th>
                     <th>Posição</th>
                     <th>Nota fiscal</th>
+                    <th>Palete ID</th>
                     <th>Quantidade</th>
                     <th>Observação</th>
                     <th>Status</th>
@@ -92,6 +93,9 @@ if ($permD == 1) {
                             </td>
                             <td>
                                 <?= $busca['nota'] ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <?= $busca['palete_id'] ?>
                             </td>
                             <td>
                                 <?= $busca['quantidade'] ?>

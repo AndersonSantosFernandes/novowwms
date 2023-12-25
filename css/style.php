@@ -1,7 +1,7 @@
 <?php
 
 include_once("queryes.php");
-include_once("verify_login.php");
+include_once("global.php");
  
 ?>
 
@@ -12,6 +12,7 @@ include_once("verify_login.php");
         box-sizing: border-box;
         border-radius: 5px;
         box-shadow: 3px,3px,3px var(--standard-color);
+        list-style: none;
     }
 
     :root {
@@ -49,12 +50,30 @@ include_once("verify_login.php");
         <?php endif; ?>
     }
 
-    .container {
-        /* position: relative; */
+    .containerPalet {
+        background-color: aliceblue;
+        margin: 15px 0;
+        padding-bottom: 20px;
+    }
+    /* pagina getSerial.php */
+
+    #posicao, #pid, #serial{
+        text-align: center;
+        font-weight: bold;
     }
 
     /*Modal deletar vídeo*/
 
+    #formPallete{
+        width: 700px;
+        padding: 6px;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        margin-left: -350px;
+        background-color: var(--colorRow);
+        z-index: 10;
+    }
 
    #modal{
     position: fixed;
@@ -99,10 +118,16 @@ include_once("verify_login.php");
         text-decoration: none;
     }
 
+    .cria__palete{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+
     .btnModal {
         width: 120px;
         padding: 5px;
-        margin: 8px;
+        margin:0 8px;
         border-radius: 8px;
         color: var(--colorBox);
         font-weight: bold;
@@ -138,15 +163,14 @@ include_once("verify_login.php");
         position: sticky ;
         top: 0px;
         width: 100%;
-        /* background-color: var(--bg-title-color); */
         background-image: linear-gradient(var(--bg-title-color),var(--bg-title-color), white,var(--bg-title-color), var(--bg-title-color));
         padding: 5px 0;
-        text-align: center;
         z-index: 100;
-        /* margin-bottom: 10px; */
 
-        /* vertical-align: middle; */
-
+    }
+    header nav ul{
+        display: flex;
+        align-items: center;
     }
 
     header nav ul li a {

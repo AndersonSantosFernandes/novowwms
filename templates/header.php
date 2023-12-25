@@ -15,12 +15,12 @@ $messagen = new Message();
 $exibeMensagem = $messagen->getMessage();
 if (!empty($exibeMensagem['mensage'])) {
     $messagen->clearMessage();
-} 
+}
 
 ?>
 
 <!DOCTYPE html>
-<html lang="pt br"> 
+<html lang="pt br">
 
 <head>
     <meta charset="UTF-8">
@@ -51,29 +51,33 @@ if (!empty($exibeMensagem['mensage'])) {
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="scripts/script.js"></script>
-    <div id='show'></div>
+    <!-- Aqui renderiza a meta tag refresh que direciona par logoff -->
+    <!-- <div id='show'></div> -->
 </head>
 <header>
     <nav>
-        <ul> 
-            <li>                
-                <div class="row">
-                    <div class="col-md-7">
-                        <a href="initial.php">HOME</a>
-                        <a href="logout.php">Sair</a>
-                        <a class="nameInt">
-                            <?= $user_name ?>
-                        </a>                       
-                    </div>
-                </div>              
+        <ul>
+            <li>
+                <a href="initial.php">HOME</a>
             </li>
+            <li>
+                <a href="logout.php">Sair</a>
+            </li>
+            <li>
+                <a class="nameInt"><?= $user_name ?></a>
+            </li>
+            <li>
+                <div id='show'></div>
+            </li>
+
         </ul>
     </nav>
 </header>
 
 <!-- Usar o trecho abaixo para expirar a sessão -->
-<!-- <body onload="resetTime()"> -->
-<body>
+
+<body onload="resetTime()">
+    <!-- <body> -->
     <?php if (!empty($exibeMensagem['mensage'])): ?>
 
         <div class="<?php echo $exibeMensagem['type']; ?>">

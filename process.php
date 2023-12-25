@@ -34,7 +34,9 @@ $estado = filter_input(INPUT_POST, "estado");
 $fullPosition = filter_input(INPUT_POST, "fullPosition");
 $returnFulName = filter_input(INPUT_POST, "returnFulName");
 $direction = filter_input(INPUT_POST, "direcao");
-
+$palete_id = filter_input(INPUT_POST, "palete_id");
+// var_dump($modelo);
+// exit;
 //Gerenciamento de permissões
 $admin = filter_input(INPUT_POST, "admin");
 $create = filter_input(INPUT_POST, "create");
@@ -98,7 +100,6 @@ if ($delete == null) {
 }
 
 
-
 if ($action === "novaPosicao") {
     // Verifica se estão vindo todas as informaç~es dos inputs
     if ($rua && $posicao && $altura && $profundidade) {
@@ -130,16 +131,12 @@ if ($action === "novaPosicao") {
 
 } elseif ($action == "newPallet") { //Query que salva um pallet na posição
 
-   
-
-    
-
     if ($modelo && $status && $fullPosition) {
         $stmt = $conn->prepare("UPDATE posicoes SET  modelo = :modelo, status = :status, 
         nota = :nota, quantidade = :quantidade, itemModelo = :itemModelo,
         unudMedida = :unudMedida, contratante = :contratante, operacao = :operacao,
         origem = :origem, destino = :destino, observacao = :observacao, estado = :estado, 
-        dataModificacao = CURRENT_DATE, usuario = :usuario WHERE posicao = :posicao");
+        dataModificacao = CURRENT_DATE, usuario = :usuario, palete_id = :palete_id WHERE posicao = :posicao");
         $stmt->bindParam(":modelo", $modelo);
         $stmt->bindParam(":status", $status);
         $stmt->bindParam(":nota", $nota);
@@ -154,6 +151,8 @@ if ($action === "novaPosicao") {
         $stmt->bindParam(":estado", $estado);
         $stmt->bindParam(":usuario", $returnFulName);
         $stmt->bindParam(":posicao", $fullPosition);
+        $stmt->bindParam(":palete_id", $palete_id);
+
         $stmt->execute();
 
         $mensagens->setMessage("Salvo com sucesso !!!", "win");
@@ -176,7 +175,7 @@ if ($action === "novaPosicao") {
     $stmt = $conn->prepare("UPDATE posicoes SET  modelo = '', status = '', 
         nota = '', quantidade = 0, itemModelo = '', unudMedida = '', contratante = '', operacao = '',
         origem = '', destino = '', observacao = '', estado = :estado, 
-        dataModificacao = CURRENT_DATE, usuario = :usuario WHERE posicao = :posicao");
+        dataModificacao = CURRENT_DATE, usuario = :usuario, palete_id = null WHERE posicao = :posicao");
    
     $stmt->bindParam(":estado", $estado);
     $stmt->bindParam(":posicao", $fullPosition);
