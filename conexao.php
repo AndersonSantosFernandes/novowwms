@@ -1,4 +1,9 @@
 <?php
+// Conexão online
+// $db_name = "id20919446_estoque";
+// $db_host = "localhost";
+// $db_user = "id20919446_administrador";
+// $db_pass = "Estoque@1978";
 
 $db_name = "wmsestoque";
 $db_host = "localhost";

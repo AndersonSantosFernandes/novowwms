@@ -8,7 +8,7 @@ include_once("models/Message.php");
 $mensagens = new Message();
 $getSerial = filter_input(INPUT_POST, "getSerial");
 
-$stmt = $conn->prepare("SELECT po.posicao,pa.palete_id,se.serial FROM posicoes po INNER JOIN paletes pa INNER JOIN seriais se WHERE
+$stmt = $conn->prepare("SELECT po.posicao,pa.palete_id,se.serial, pa.modelo FROM posicoes po INNER JOIN paletes pa INNER JOIN seriais se WHERE
 po.palete_id = pa.palete_id AND pa.palete_id = se.palete_id AND se.serial = :getSerial");
 
 $stmt->bindParam(":getSerial", $getSerial);
@@ -16,12 +16,12 @@ $stmt->execute();
 $retorno = $stmt->fetch(PDO::FETCH_ASSOC);
 $linha = $stmt->rowCount();
 
-if($linha > 0){
+if ($linha > 0) {
+    $display1 = "none";
     $display = "block";
-}else{
+} else {
+    $display1 = "block";
     $display = "none";
-    $mensagens->setMessage("Serial não encontrado em uma posição","fall");
-  
 }
 
 ?>
@@ -34,7 +34,9 @@ if($linha > 0){
             <input class="puts" type="text" name="getSerial" id="getSerial" autofocus>
             <input type="submit" value="Pesquisar" class="btnModal">
         </form>
-
+        <div id="mostrar" style="display: <?= $display1 ?>;">
+            <h4>Serial não encontrado em nem um palete ou posição</h4>
+        </div>
         <div class="returnSerial" style="display: <?= $display ?>;">
             <label for="posicao">Posição</label>
             <input class="puts" type="text" name="" id="posicao" value="<?= $retorno['posicao'] ?>" readonly>
@@ -42,6 +44,9 @@ if($linha > 0){
             <input class="puts" type="text" name="" id="pid" value="<?= $retorno['palete_id'] ?>" readonly>
             <label for="serial">Serial</label>
             <input class="puts" type="text" name="" id="serial" value="<?= $retorno['serial'] ?>" readonly>
+            <label for="mode">Modelo</label>
+            <input class="puts" type="text" name="" id="mode" value="<?= $retorno['modelo'] ?>" readonly>
+      
         </div>
 
     </div>
