@@ -6,6 +6,8 @@ include_once("global.php");
 ?>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400&display=swap');
+
     * {
         margin: 0;
         padding: 0;
@@ -13,6 +15,7 @@ include_once("global.php");
         border-radius: 5px;
         box-shadow: 3px,3px,3px var(--standard-color);
         list-style: none;
+        font-family: 'Titillium Web', sans-serif;
     }
 
     :root {
@@ -49,7 +52,9 @@ include_once("global.php");
             background-attachment: fixed;
         <?php endif; ?>
     }
-
+.container{
+    margin-top: 57px;
+}
     .containerPalet {
         background-color: aliceblue;
         margin: 15px 0;
@@ -234,6 +239,7 @@ include_once("global.php");
         font-weight: bold;
         margin: 5px auto;
     }
+   
 
     /* links csv pagina newPosition */
 

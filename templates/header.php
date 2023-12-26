@@ -14,6 +14,7 @@ $messagen = new Message();
 
 $exibeMensagem = $messagen->getMessage();
 if (!empty($exibeMensagem['mensage'])) {
+  $mtop ="";
     $messagen->clearMessage();
 }
 
@@ -57,6 +58,13 @@ if (!empty($exibeMensagem['mensage'])) {
     
     
 </head>
+
+
+
+
+
+<body onload="resetTime()">
+
 <!--  -->
 <nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
@@ -94,15 +102,10 @@ if (!empty($exibeMensagem['mensage'])) {
   </div>
 </nav>
 <!--  -->
-
-
-
-
-<body onload="resetTime()">
    
     <?php if (!empty($exibeMensagem['mensage'])): ?>
-
-        <div class="<?php echo $exibeMensagem['type']; ?>">
+        <?php $mtop ="style='margin-top: 57px'" ?>
+        <div id="winfall" class="<?php echo $exibeMensagem['type']; ?>" <?= $mtop?> >
 
             <?= $exibeMensagem['mensage'] ?>
 

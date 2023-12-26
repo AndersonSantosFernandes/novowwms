@@ -5,6 +5,14 @@ include_once("global.php");
 include_once("querys.php");
 include_once("verify_login.php");
 
+// valor que vi para process como post e volta por get para manter o modelo
+//do select quando estiver inserindo serial
+$voltaModelo = filter_input(INPUT_GET,"voltamodelo");
+if(isset($voltaModelo)){
+    $voltando = $voltaModelo;
+}else{
+    $voltando = "";
+}
 
 $sessaoId = "";
 
@@ -32,11 +40,27 @@ if (isset($_SESSION['palet'])) {
             <!-- Input hiden que envia o id do pallete para a process -->
             <input type="hidden" name="paleteId" value="<?= $sessaoId ?>">
             <input type="text" name="serial" id="serial" autofocus>
-            <input type="submit" value="Inserir">
+            <label for="modelo">Modelo</label><br> 
+                 <select  class="puts" name="modelo" id="modelo"
+                    title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo">
+                    <option value="<?= $voltando ?>"><?= $voltando ?></option>
+                    <?php foreach ($returnModel as $retMod): ?>
+                        <?php extract($retMod) ?>
+
+                        <option value="<?= $modelo ?>"><?= $modelo ?></option>
+
+                    <?php endforeach; ?>
+
+                </select>
+            <input class="btnModal" type="submit" value="Inserir">
         </form>
+        <!--  -->
+       
+        <!--  -->
         <!-- Número de seriais inseridos no palet -->
-        <?= $linhaSeriais ?> seriais inseridos
-        <br>
+        <h5><?= $linhaSeriais ?> seriais inseridos</h5>
+        
+        <a href="inoutPalete.php"><button class="btnModal">Sair do palete</button></a>
         <hr>
         <table id="tbPalet">
             <!-- Título aparece quando houver ao menos um serial inserido -->
@@ -62,17 +86,16 @@ if (isset($_SESSION['palet'])) {
                         <td>
                             <?= $serial ?>
                         </td>
-                        <td>
+                        <td style="text-align: center; width: 35px;">
                             <!-- Botão que remove o serial escolhido -->
-                            <a href="procesPalet.php?actionGet=delete&serial_id=<?= $serial_id ?>"><button
-                                    class="btnModal">Remover</button></a>
+                            <a href="procesPalet.php?actionGet=delete&serial_id=<?= $serial_id ?>"><button style="width:25px; font-weight: bold; color: red; border: none; border-radius: 6px;">X</button></a>
                         </td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach ?>
         </table>
         <hr>
-        <br>
+       
         <a href="inoutPalete.php"><button class="btnModal">Sair do palete</button></a>
     </div>
 <?php else: ?>
@@ -89,18 +112,7 @@ if (isset($_SESSION['palet'])) {
 
                 <input class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
 
-                <!-- <label for="modelo">Modelo</label><br> -->
-                <select <?= $desliga ?> class="puts" name="modelo" id="modelo"
-                    title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo">
-                    <option value="">Selecione um modelo</option>
-                    <?php foreach ($returnModel as $retMod): ?>
-                        <?php extract($retMod) ?>
-
-                        <option value="<?= $modelo ?>"><?= $modelo ?></option>
-
-                    <?php endforeach; ?>
-
-                </select>
+               
             </div>
         </form>
 
@@ -109,8 +121,8 @@ if (isset($_SESSION['palet'])) {
             <tr>
                 <th>PALETE ID</th>
                 <th>SERIAL</th>
-                <th>MODELO</th>
-                <th>DELETAR PALETE</th>
+                <!-- <th>MODELO</th> -->
+                <th>DELETAR ALOCAR</th>
                 <th>DATA</th>
             </tr>
             <?php foreach ($retornaPalete as $retPal): ?>
@@ -142,9 +154,9 @@ if (isset($_SESSION['palet'])) {
                         <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal" <?= $desliga ?>>Inserir</button></a>
 
                     </td>
-                    <td>
+                    <!-- <td>
                         <?= $modelo ?>
-                    </td>
+                    </td> -->
                     <td>
                         <a href="procesPalet.php?actionGet=delPalete&serial_id=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal"
                                 <?= $desliga ?>>Deletar Palete</button></a>
@@ -152,7 +164,7 @@ if (isset($_SESSION['palet'])) {
                               
 
 
-                                <a href="inserirPalet.php?paleteId=<?= $palete_id ?>&model=<?= $modelo ?>"><button <?= $desabilita ?> class="btnModal"
+                                <a href="inserirPalet.php?paleteId=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal"
                                 <?= $desliga ?>><?= $valorBtn ?></button></a>
                     </td>
                     <td>

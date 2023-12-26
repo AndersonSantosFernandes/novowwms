@@ -8,7 +8,7 @@ include_once("models/Message.php");
 $mensagens = new Message();
 $getSerial = filter_input(INPUT_POST, "getSerial");
 
-$stmt = $conn->prepare("SELECT po.posicao,pa.palete_id,se.serial, pa.modelo FROM posicoes po INNER JOIN paletes pa INNER JOIN seriais se WHERE
+$stmt = $conn->prepare("SELECT po.posicao,pa.palete_id,se.serial, se.modelo FROM posicoes po INNER JOIN paletes pa INNER JOIN seriais se WHERE
 po.palete_id = pa.palete_id AND pa.palete_id = se.palete_id AND se.serial = :getSerial");
 
 $stmt->bindParam(":getSerial", $getSerial);

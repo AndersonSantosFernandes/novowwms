@@ -17,26 +17,17 @@ $serial_id = filter_input(INPUT_GET, "serial_id");
 
 $sairPalet = filter_input(INPUT_GET,"actionPalet");
 
-
-
 if ($action == "novoPalete") {
 
-    if(!$modelo){
-        $mensagens->setMessage("Selecione um modelo","fall");
-    }else{
-        $stmt = $conn->prepare("INSERT INTO paletes (modelo ,dataPalete) VALUES(:modelo, CURRENT_DATE)");
-        $stmt->bindParam(":modelo",$modelo);
+        $stmt = $conn->prepare("INSERT INTO paletes (dataPalete) VALUES( CURRENT_DATE)");
+   
         $stmt->execute();
-    
-    }
-
-    
+        
     header("location:paletes.php");
-
 
 } elseif ($action == "insereSerial") {
     // Deve vir o id do palet e o serial por post
-    if ($serial && $palete_id) {
+    if ($serial && $palete_id && $modelo) {
 
         // Verifica se o serial ja está inserini palete ou em outro
         $stmtVerificaSerial = $conn->prepare("SELECT * FROM seriais WHERE  serial = :serial");
@@ -54,20 +45,21 @@ if ($action == "novoPalete") {
 
         } else {
             // O serial é inserido caso atenda a condição
-            $stmt = $conn->prepare("INSERT INTO seriais (palete_id, serial) VALUES(:palete_id, :serial)");
+            $stmt = $conn->prepare("INSERT INTO seriais (palete_id, serial, modelo) VALUES(:palete_id, :serial, :modelo)");
             $stmt->bindParam(":palete_id", $palete_id);
             $stmt->bindParam(":serial", $serial);
+            $stmt->bindParam(":modelo", $modelo);
             $stmt->execute();
             $mensagens->setMessage("Serial ".$serial  ." inserido com sucesso","win");
         }
 
 
     } else {
-
+        $mensagens->setMessage("Escolha um modelo","fall");
     }
 
 
-    header("location:paletes.php");
+    header("location:paletes.php?voltamodelo=".$modelo."");
 
 }elseif ($actionGet == "delete") {
 $stmt = $conn->prepare("DELETE FROM seriais WHERE serial_id = :serial_id");
