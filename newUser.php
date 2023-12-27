@@ -3,9 +3,9 @@ include_once("templates/header.php");
 include_once("conexao.php");
 include_once("queryes.php");
 include_once("verify_login.php");
-
 include_once("permitions.php");
 
+$minutoss = $tempo / 60;
 
 ?>
 
@@ -79,6 +79,24 @@ include_once("permitions.php");
             <h3 class="tite">Permissões <br> <a href="user_manage.php">Gerenciar permissões</a> </h3>
 
             <hr>
+            <h3 class="tite">Tempo de sessão </h3>
+                <form action="process.php" method="post">
+
+                <input type="hidden" name="action" value="mudaTempoSessao">
+
+                
+                <select class="puts" name="minSessao" id="minSessao">
+                    <option value="300">05</option>
+                    <option value="600">10</option>
+                    <option value="900">15</option>
+                    <option value="1200">20</option>
+                    <option value="1500">25</option>
+                    <option value="60">01</option>
+                </select>
+                <input class="btnModal" type="submit" value="Mudar">
+                </form>
+                <h5>A sessão está configurada para expirar após <?= $minutoss ?> minutos de inatividade</h5>
+                <hr>
             <h3>Cadastrar informações para alocamento</h3>
             <br>
             <!--Cadastrar novo item modelo-->

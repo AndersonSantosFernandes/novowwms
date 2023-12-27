@@ -38,4 +38,12 @@ $returnStatus = $stmtStatus->fetchAll(PDO::FETCH_ASSOC);
 $stmtInformacoesAlocamento = $conn->query("SELECT * FROM listainformacoescadastrar ORDER BY informacao");
 $stmtInformacoesAlocamento->execute();
 $linhasInformacao = $stmtInformacoesAlocamento->fetchAll(PDO::FETCH_ASSOC);
+
+// Query que retorna o tempo de sessão
+$stmtTempo = $conn->query("SELECT * FROM sessao");
+$stmtTempo->execute();
+$retornaTempo = $stmtTempo->fetch(PDO::FETCH_ASSOC);
+$tempo = $retornaTempo["minutos"];
+
+
 ?>

@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 //===Inicio=============Trcho de código que derruba a sessão após ficar certo tempo inativo
-num = 300
+num = <?= $tempo?> //Trmpo que vem do BD
 
 
 time = num/60

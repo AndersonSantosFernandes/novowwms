@@ -69,6 +69,8 @@ $status_id = filter_input(INPUT_POST, "status_id");
 $informacaoTipo = filter_input(INPUT_POST, "informacaoTipo");
 $information = filter_input(INPUT_POST, "information");
 
+//Muda tempo da sessão
+$minSessao = filter_input(INPUT_POST, "minSessao");
 
 
 
@@ -397,8 +399,15 @@ header("location:newUser.php");
 
 header("location:newUser.php");
 
-}
+}elseif($action == "mudaTempoSessao"){
 
+$stmt = $conn->prepare("UPDATE sessao SET minutos = :minutos");
+$stmt->bindParam(":minutos",$minSessao);
+$stmt->execute();
+
+$mensagens->setMessage("Tempo alterado com sucesso","win");
+header("location:newUser.php");
+}
 
 
 
