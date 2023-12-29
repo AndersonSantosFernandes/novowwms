@@ -93,6 +93,7 @@ if (!empty($exibeMensagem['mensage'])) {
             <a class="nav-link" href="getserial.php ">Pesquisar Serial</a>
             <a class="nav-link" href=" paletes.php">Paletes</a>
             <a class="nav-link" href="setpass.php ">Mudar Senha</a>
+            <a class="nav-link" href="sobre.php ">Sobre</a>
             <a class="nav-link" href="logout.php">Sair</a>
           </li>
           

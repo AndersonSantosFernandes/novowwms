@@ -69,6 +69,7 @@ if (isset($_SESSION['palet'])) {
                     <th>SERIAL ID</th>
                     <th>PALETE ID</th>
                     <th>SERIAL</th>
+                    <th>SERIAL</th>
                     <th>REMOVER</th>
                 </tr>
             <?php endif; ?>
@@ -85,6 +86,9 @@ if (isset($_SESSION['palet'])) {
                         </td>
                         <td>
                             <?= $serial ?>
+                        </td>
+                        <td>
+                            <?= $modelo ?>
                         </td>
                         <td style="text-align: center; width: 35px;">
                             <!-- Botão que remove o serial escolhido -->

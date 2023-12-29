@@ -16,7 +16,21 @@ $stmt->execute();
 $retorno = $stmt->fetch(PDO::FETCH_ASSOC);
 $linha = $stmt->rowCount();
 
+$stmtPalet = $conn->prepare("SELECT * FROM paletes pa INNER JOIN seriais se WHERE 
+pa.palete_id = se.palete_id AND se.serial = :getSerial");
+
+$stmtPalet->bindParam(":getSerial", $getSerial);
+$stmtPalet->execute();
+$retornoPalet = $stmtPalet->fetch(PDO::FETCH_ASSOC);
+$linhaPalet = $stmtPalet->rowCount();
+
+
 if ($linha > 0) {
+    $display1 = "none";
+    $display = "block";
+    $posicaoEstoque = $retorno['posicao'];
+}elseif($linha < 1 && $linhaPalet > 0){
+    $posicaoEstoque = "Não alocado";
     $display1 = "none";
     $display = "block";
 } else {
@@ -35,19 +49,20 @@ if ($linha > 0) {
             <input type="submit" value="Pesquisar" class="btnModal">
         </form>
         <div id="mostrar" style="display: <?= $display1 ?>;">
-            <h4>Serial não encontrado em nem um palete ou posição</h4>
+            <h4>Serial não encontrado em nenhum palete ou posição</h4>
         </div>
         <div class="returnSerial" style="display: <?= $display ?>;">
             <label for="posicao">Posição</label>
-            <input class="puts" type="text" name="" id="posicao" value="<?= $retorno['posicao'] ?>" readonly>
+            <input class="puts" type="text" name="" id="posicao" value="<?= $posicaoEstoque ?>" readonly>
             <label for="pid">Palete ID</label>
-            <input class="puts" type="text" name="" id="pid" value="<?= $retorno['palete_id'] ?>" readonly>
+            <input class="puts" type="text" name="" id="pid" value="<?= $retornoPalet['palete_id'] ?>" readonly>
             <label for="serial">Serial</label>
-            <input class="puts" type="text" name="" id="serial" value="<?= $retorno['serial'] ?>" readonly>
+            <input class="puts" type="text" name="" id="serial" value="<?= $retornoPalet['serial'] ?>" readonly>
             <label for="mode">Modelo</label>
-            <input class="puts" type="text" name="" id="mode" value="<?= $retorno['modelo'] ?>" readonly>
+            <input class="puts" type="text" name="" id="mode" value="<?= $retornoPalet['modelo'] ?>" readonly>
       
         </div>
+
 
     </div>
 
