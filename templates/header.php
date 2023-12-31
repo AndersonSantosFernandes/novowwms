@@ -69,7 +69,7 @@ if (!empty($exibeMensagem['mensage'])) {
 <!--  -->
 <nav class="navbar bg-body-tertiary fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="initial.php">HOME</a> <div id="show"><!-- Aqui renderiza a meta tag refresh que direciona par logoff --></div>
+    <a class="navbar-brand" href="initial.php">HOME</a>  <a class="navbar-brand" href="embalagens.php">Embalagens</a> <div id="show"><!-- Aqui renderiza a meta tag refresh que direciona par logoff --></div>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -89,10 +89,11 @@ if (!empty($exibeMensagem['mensage'])) {
             <a class="nav-link" href="inserirPalet.php">Alocar Palete</a>
             <a class="nav-link" href="buscarPalet.php">Buscar Palete</a>
             <a class="nav-link" href="dashboard.php">Dashboard</a>
-            <a class="nav-link" href="config.php ">Cores</a>
+            <a class="nav-link" href="embalagens.php ">Embalagens</a>
             <a class="nav-link" href="getserial.php ">Pesquisar Serial</a>
             <a class="nav-link" href=" paletes.php">Paletes</a>
             <a class="nav-link" href="setpass.php ">Mudar Senha</a>
+            <a class="nav-link" href="config.php ">Cores</a>
             <a class="nav-link" href="sobre.php ">Sobre</a>
             <a class="nav-link" href="logout.php">Sair</a>
           </li>

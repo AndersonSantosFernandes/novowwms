@@ -4,6 +4,7 @@ include_once("conexao.php");
 include_once("global.php");
 include_once("querys.php");
 include_once("verify_login.php");
+include_once("permitions.php");
 
 // valor que vi para process como post e volta por get para manter o modelo
 //do select quando estiver inserindo serial
@@ -21,6 +22,15 @@ if (isset($_SESSION['palet'])) {
     $sessaoId = $_SESSION['palet'];
 } else {
     $_SESSION['palet'] = null;
+}
+
+// permissão para criar novo palete
+if($permC == 1){
+    $display = "block";
+    $display1 = "none";
+}else{
+    $display = "none";
+    $display1 = "block";
 }
 
 ?>
@@ -114,8 +124,8 @@ if (isset($_SESSION['palet'])) {
 
             <div class="cria__palete">
 
-                <input class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
-
+                <input style="display:<?=$display?>;" class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
+                <h3 style="display:<?=$display1?>;" >Você não pode criar um novo palete</h3>
                
             </div>
         </form>
