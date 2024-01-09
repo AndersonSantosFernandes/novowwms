@@ -8,7 +8,7 @@ include_once("permitions.php");
 ?>
 
 <div class="container">
-    <h1 class="titulo">Posições</h1>
+    <h1 class="titulo">Posições</h1> 
     <div class="registration">
 
        

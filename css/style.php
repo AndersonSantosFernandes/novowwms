@@ -16,6 +16,7 @@ include_once("global.php");
         box-shadow: 3px,3px,3px var(--standard-color);
         list-style: none;
         font-family: 'Titillium Web', sans-serif;
+        text-decoration: none;
     }
 
     :root {
@@ -467,6 +468,66 @@ font-family: Arial, Helvetica, sans-serif;
         display: flex;
         justify-content: space-around;
     }
+
+
+.div__grid{
+    /* border: 1px solid purple; */
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(13,120px);
+    grid-template-areas: 
+    "campo1"
+    "campo2"
+    "campo3"
+    "campo4"
+    "campo5"
+    "campo6"
+    "campo7"
+    "campo8"
+    "campo9"
+    "campo10"
+    "campo11"
+    "campo12"
+    "campo13"
+    
+    ;
+    column-gap: 5px;
+    row-gap: 5px;
+}
+.tableGrid{
+    box-shadow: 0px 0px 3px var(--btnMain);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+    /* border: 1px solid purple; */
+}
+/* .campo1{
+    grid-area: campo1;
+} */
+@media(min-width:1080px) {
+    .div__grid{
+    /* border: 1px solid purple; */
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(5,120px);
+    grid-template-areas: 
+    "campo1 campo2 campo3"
+    "campo4 campo5 campo6"
+    "campo7 campo8 campo9"
+    "campo10 campo11 campo12"
+    "campo13 campo13 campo13"
+    ;
+
+   
+}
+
+.campo13{
+    grid-area: campo13;
+}
+
+}
+
 
     @media(max-width:450px) {
         .movAll {

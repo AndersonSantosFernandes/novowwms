@@ -28,12 +28,11 @@ $insertModel = $model;
                 <input type="hidden" name="estado" value="Ocupado">
                 <!--Muda o estado da posição para ocupado-->
                 <input type='hidden' name='nameLog' value='<?= $returnFulName ?>'>
-                <!---->
-                <table id="tbInsert">
-                    <tr>
-                        <td>
-                            <!-- Select que envia o modelo de equipamento  -->
-                            <label for="modelo">Modelo</label><br>
+
+<div class="div__grid">
+    <div class="tableGrid campo1">
+ <!-- Select que envia o modelo de equipamento  -->
+ <label for="modelo">Modelo</label>
                             <select  class="puts" name="modelo" id="modelo"
                                 title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo" aria-readonly="" >
                                 <option readonly value="<?= $insertModel ?>"><?= $insertModel ?></option>
@@ -46,13 +45,10 @@ $insertModel = $model;
                                 <?php endforeach; ?>
 
                             </select>
-
-
-                        </td>
-                        <td>
-
-                            <!-- Select que envia o status do equipamento -->
-                            <label for="status">Status</label><br>
+    </div>
+    <div class="tableGrid campo2">
+         <!-- Select que envia o status do equipamento -->
+         <label for="status">Status</label>
                             <select class="puts" name="status" id="status">
                                 <option value=""></option>
                                 <?php foreach ($returnStatus as $retStatus): ?>
@@ -64,27 +60,22 @@ $insertModel = $model;
                                 <?php endforeach; ?>
                             </select>
 
-
-                        </td>
-                        <td>
-
-                            <!-- Envia NF -->
-                            <label for="nota">NF</label><br>
+    </div>
+    <div class="tableGrid campo3">
+         <!-- Envia NF -->
+         <label for="nota">NF</label>
                             <input class="puts" type="text" name="nota" id="nota" placeholder="Nota fiscal" required>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <!-- Envia a quantidade a se inserida nopalet -->
-                            <label for="quantidade">Quqntidade</label><br>
+ 
+    </div>
+    <div class="tableGrid campo4">
+         <!-- Envia a quantidade a se inserida nopalet -->
+         <label for="quantidade">Quqntidade</label>
                             <input class="puts" type="number" name="quantidade" id="quantidade" min="1">
 
-                        </td>
-                        <td>
-
-                            <!-- Envia o item / modelo -->
-                            <label for="modeloItem">Item Modelo</label><br>
+    </div>
+    <div class="tableGrid campo5">
+         <!-- Envia o item / modelo -->
+         <label for="modeloItem">Item Modelo</label>
                             <select class="puts" name="modeloItem" id="modeloItem">
 
                                 <?php // Lista de itens modelo    
@@ -96,11 +87,10 @@ $insertModel = $model;
                                     }
                                     ?>
                             </select>
-                        </td>
-                        <td>
-
-                            <!-- Envia unidade de medida -->
-                            <label for="modeloItem">Unidade de medida</label><br>
+    </div>
+    <div class="tableGrid campo6">
+        <!-- Envia unidade de medida -->
+        <label for="modeloItem">Unidade de medida</label>
                             <select class="puts" name="medidaUnidade" id="medidaUnidade">
 
                                 <?php // Lista de itens modelo  
@@ -112,14 +102,11 @@ $insertModel = $model;
                                         }
                                     }
                                     ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                            <!-- Envia contratante -->
-                            <label for="contrat">Contratante</label><br>
+                            </select> 
+    </div>
+    <div class="tableGrid campo7">
+          <!-- Envia contratante -->
+          <label for="contrat">Contratante</label>
                             <select class="puts" name="contrat" id="contrat">
 
                                 <?php // Lista de itens modelo  
@@ -132,11 +119,10 @@ $insertModel = $model;
                                     }
                                     ?>
                             </select>
-                        </td>
-                        <td>
-
-                            <!-- Envia operação -->
-                            <label for="operat">Operação</label><br>
+    </div>
+    <div class="tableGrid campo8">
+       <!-- Envia operação -->
+       <label for="operat">Operação</label>
                             <select class="puts" name="operat" id="operat">
 
                                 <?php // Lista de itens modelo  
@@ -148,12 +134,11 @@ $insertModel = $model;
                                         }
                                     }
                                     ?>
-                            </select>
-
-                        </td>
-                        <td>
-                            <!-- Envia origem-->
-                            <label for="origem">Origem</label><br>
+                            </select>  
+    </div>
+    <div class="tableGrid campo9">
+        <!-- Envia origem-->
+        <label for="origem">Origem</label>
                             <select class="puts" name="origem" id="origem">
 
                                 <?php // Lista de itens modelo 
@@ -165,16 +150,11 @@ $insertModel = $model;
                                         }
                                     }
                                     ?>
-                            </select>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-
-                            <!-- Envia destino-->
-                            <label for="destino">Destino</label><br>
+                            </select> 
+    </div>
+    <div class="tableGrid campo10">
+           <!-- Envia destino-->
+           <label for="destino">Destino</label>
                             <select class="puts" name="destino" id="destino">
 
                                 <?php // Lista de itens modelo 
@@ -187,9 +167,9 @@ $insertModel = $model;
                                     }
                                     ?>
                             </select>
-                        </td>
-                        <td>
-                            <label for="fullPosition">Posições livres</label><br>
+    </div>
+    <div class="tableGrid campo11">
+    <label for="fullPosition">Posições livres</label>
                             <!-- Select que exibe todas as posições vazias aptas para alocar palet -->
                             <select class="puts" name="fullPosition" id="fullPosition">
 
@@ -203,31 +183,32 @@ $insertModel = $model;
                                     }
                                     ?>
                             </select>
-                        </td>
-                        <td>
-                                <!-- Envia a id do palete com seriais vindo de paletes.php -->
-                            <label for="palete_id">Palete ID</label><br>
+    </div>
+    <div class="tableGrid campo12">
+            <!-- Envia a id do palete com seriais vindo de paletes.php -->
+            <label for="palete_id">Palete ID</label>
                             <input class="puts" type="number" name="palete_id" id="palete_id" min="1" readonly value="<?= $paleteId ?>">
-     
-                        </td>
-                    </tr>
-                </table>
-
-                <br>
-
-
-                <!-- Campo de observação -->
-                <label for="observacao">Observação</label><br>
+      
+    </div>
+    <div class="tableGrid campo13">
+           <!-- Campo de observação -->
+           <label for="observacao">Observação</label>
                 <textarea name="observacao" id="observacao" cols="30" rows="3"></textarea>
 
 
-                <input class='putsBtn' type="submit" value="Alocar Palet">
-            </form>
+                
+        </div>
+        <input class='putsBtn' type="submit" value="Alocar Palet">
+        </form>
         <?php else: ?>
 
             <h2>Você não pode alocar pallet no estoque</h2>
         <?php endif; ?>
 
+
+
+
+</div>
 
         <table >
 

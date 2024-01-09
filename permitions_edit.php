@@ -87,8 +87,13 @@ $email = $_GET['email'];
 
                 </div>
                 <hr>
-                <input class="putsBtn" type="submit" value="Alterar">
-            <?php else: ?>
+                <input class="btn btn-primary" type="submit" value="Alterar">
+                <!-- <a class="putsBtn" href="process.php?action2=delUser&userEmail=<?=$email?>">Deletar usuário</a> -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Deletar usuário
+</button>
+<button class="btn btn-primary" > <a style="color:white; text-decoration: none;" href="newUser.php">Voltar</a> </button>
+                <?php else: ?>
 
                 <h1>Só admnistrador pode cadastrar novo usuário</h1>
 
@@ -101,5 +106,26 @@ $email = $_GET['email'];
 
 
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">DELETAR USUÁRIO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            Tem certeza que quer deletar o usuário <?=$email?>?
+            <br>
+            A ação é irreversível.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">
+        <a style="color:black; text-decoration: none;"  href="process.php?action2=delUser&userEmail=<?=$email?>">Deletar usuário</a>        
+    </button>
+      </div>
+    </div>
+  </div>
+</div>
 <?php include_once("templates/footer.php") ?>

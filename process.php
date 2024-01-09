@@ -11,6 +11,7 @@ $action = filter_input(INPUT_POST, "action");
 //Inputs que vem por GET
 $action2 = filter_input(INPUT_GET, "action2");
 $id = filter_input(INPUT_GET, "id");
+$userEmail = filter_input(INPUT_GET, "userEmail");
 
 //Inputs vindos de formulários:
 $rua = filter_input(INPUT_POST, "rua");
@@ -35,6 +36,14 @@ $fullPosition = filter_input(INPUT_POST, "fullPosition");
 $returnFulName = filter_input(INPUT_POST, "returnFulName");
 $direction = filter_input(INPUT_POST, "direcao");
 $palete_id = filter_input(INPUT_POST, "palete_id");
+
+if(isset($palete_id)){
+$alocarPalete = $palete_id;
+}else{
+   $alocarPalete = 0; 
+}
+
+
 // var_dump($modelo);
 // exit;
 //Gerenciamento de permissões
@@ -132,7 +141,9 @@ if ($action === "novaPosicao") {
     header("location:newUser.php");
 
 } elseif ($action == "newPallet") { //Query que salva um pallet na posição
+// var_dump($palete_id);
 
+// exit;
     if ($modelo && $status && $fullPosition) {
         $stmt = $conn->prepare("UPDATE posicoes SET  modelo = :modelo, status = :status, 
         nota = :nota, quantidade = :quantidade, itemModelo = :itemModelo,
@@ -153,7 +164,7 @@ if ($action === "novaPosicao") {
         $stmt->bindParam(":estado", $estado);
         $stmt->bindParam(":usuario", $returnFulName);
         $stmt->bindParam(":posicao", $fullPosition);
-        $stmt->bindParam(":palete_id", $palete_id);
+        $stmt->bindParam(":palete_id", $alocarPalete);
 
         $stmt->execute();
 
@@ -407,6 +418,17 @@ $stmt->execute();
 
 $mensagens->setMessage("Tempo alterado com sucesso","win");
 header("location:newUser.php");
+}
+elseif($action2 == "delUser"){
+
+echo $userEmail;
+    $stmt = $conn->prepare("DELETE FROM users WHERE email = :email  ");
+    $stmt->bindParam(":email",$userEmail);
+    $stmt->execute();
+
+    $mensagens->setMessage("O usuário $userEmail foi deletado  <a href=''>X</a>", "win");
+
+    header("location:newUser.php");
 }
 
 

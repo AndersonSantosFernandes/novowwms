@@ -34,6 +34,8 @@ include_once("verify_login.php");
             <input class="btnModal" type="submit" value="Executar">
             </form>
             <hr>
+            <i class="fa-solid fa-file-excel"><a class="linkCsv" href="csv.php?estado=caixas"> CSV Caixas</a></i>
+            <hr>
                         <table>
                             <thead>
                                 <tr>

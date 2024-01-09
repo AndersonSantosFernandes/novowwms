@@ -74,7 +74,7 @@ include_once("permitions.php");
 
                         <td class="<?= $classe ?> hide"><?= $useSel["admin"] ?></td>
                         <td class="<?= $classeC ?> hide" ><?= $useSel["permitionC"] ?></td>
-                        <td class="<?= $classeR ?> hide" ><?= $useSel["permitionR"] ?></td>
+                        <td class="<?= $classeR ?> hide" ><?= $useSel["permitionR"] ?></td> 
                         <td class="<?= $classeU ?> hide" ><?= $useSel["permitionU"] ?></td>
                         <td class="<?= $classeD ?> hide" ><?= $useSel["permitionD"] ?></td>
                         <td><a href='permitions_edit.php?email=<?= $useSel["email"] ?>&a=<?= $useSel["admin"] ?>&c=<?= $useSel["permitionC"] ?>&r=<?= $useSel["permitionR"] ?>&u=<?= $useSel["permitionU"] ?>&d=<?= $useSel["permitionD"] ?>'>Alterar</a></td>
@@ -85,6 +85,8 @@ include_once("permitions.php");
 
                            </tbody>
                 </table>
+                <br>
+                <button class="btn btn-primary" > <a style="color:white; text-decoration: none;" href="newUser.php">Voltar</a> </button>
                 </div>
 
                 <?php else: ?>

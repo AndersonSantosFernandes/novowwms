@@ -67,6 +67,28 @@ if($estado == "ocupado"){
 
     fclose($arquivo);
 
+}elseif($estado == "caixas"){
+
+    $cabecalho = ["id_modelo","modelo","quantidade"];
+
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename='.$estado.'_'.$datedate.'.csv');
+
+    $arquivo = fopen('php://output', 'w');
+
+    fputcsv($arquivo,$cabecalho, ";");
+
+    foreach ($returnModel as $model){
+        extract($model);
+        if(substr($modelo, 0, 5) == "Caixa"){
+            fputcsv($arquivo , mb_convert_encoding($model,"ISO-8859-1","UTF-8"), ";" );
+
+        }
+        
+    }
+
+    fclose($arquivo);
+
 }
 
 ?>
