@@ -31,7 +31,7 @@ include_once("verify_login.php");
 
             </select>
             <input class="puts" type="number" name="quantidadeAlterada" id="quantidadeAlterada" placeholder="Quantidade Saída">
-            <input class="btnModal" type="submit" value="Executar">
+            <input class="btnModal" type="submit" value="Executar" >
             </form>
             <hr>
             <i class="fa-solid fa-file-excel"><a class="linkCsv" href="csv.php?estado=caixas"> CSV Caixas</a></i>
@@ -51,8 +51,14 @@ include_once("verify_login.php");
                     <!-- De toda a lista de produtos, retorna apenas os que começam com "Caixa" -->
                     <?php if (substr($modelo, 0, 5) == "Caixa"): ?>
                         <tr>
-                            <td><?= $modelo ?></td>
-                            <td><?= $quantidade ?></td>
+                            <td>
+                                <?= $modelo ?>
+                            
+                        </td>
+                        <td>
+                        <input type="number" name="quantidade" id="<?= substr($modelo,0,5)."_".substr($modelo,6,2) ?>" value="<?= $quantidade ?>" readonly>
+                        <!-- <input type="text" name="quantidade" id="quantidade" value="<?= substr($modelo,0,5)."_".substr($modelo,6,2) ?>"> -->
+                        </td>
                         </tr>
                         
                         
@@ -101,5 +107,5 @@ include_once("verify_login.php");
 
     </div>
 </div>
-
+<script src="./scripts/script.js"></script>
 <?php include_once("templates/footer.php") ?>

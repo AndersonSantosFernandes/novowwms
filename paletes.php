@@ -8,10 +8,10 @@ include_once("permitions.php");
 
 // valor que vi para process como post e volta por get para manter o modelo
 //do select quando estiver inserindo serial
-$voltaModelo = filter_input(INPUT_GET,"voltamodelo");
-if(isset($voltaModelo)){
+$voltaModelo = filter_input(INPUT_GET, "voltamodelo");
+if (isset($voltaModelo)) {
     $voltando = $voltaModelo;
-}else{
+} else {
     $voltando = "";
 }
 
@@ -25,10 +25,10 @@ if (isset($_SESSION['palet'])) {
 }
 
 // permissão para criar novo palete
-if($permC == 1){
+if ($permC == 1) {
     $display = "block";
     $display1 = "none";
-}else{
+} else {
     $display = "none";
     $display1 = "block";
 }
@@ -50,28 +50,35 @@ if($permC == 1){
             <!-- Input hiden que envia o id do pallete para a process -->
             <input type="hidden" name="paleteId" value="<?= $sessaoId ?>">
             <input type="text" name="serial" id="serial" autofocus>
-            <label for="modelo">Modelo</label><br> 
-                 <select  class="puts" name="modelo" id="modelo"
-                    title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo">
-                    <option value="<?= $voltando ?>"><?= $voltando ?></option>
-                    <?php foreach ($returnModel as $retMod): ?>
-                        <?php extract($retMod) ?>
+            <label for="modelo">Modelo</label><br>
+            <select class="puts" name="modelo" id="modelo"
+                title="Se o modelo não estiver aqui, vá para página cadastrar modelos e insira um novo">
+                <option value="<?= $voltando ?>">
+                    <?= $voltando ?>
+                </option>
+                <?php foreach ($returnModel as $retMod): ?>
+                    <?php extract($retMod) ?>
 
-                        <option value="<?= $modelo ?>"><?= $modelo ?></option>
+                    <option value="<?= $modelo ?>">
+                        <?= $modelo ?>
+                    </option>
 
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
 
-                </select>
+            </select>
             <input class="btnModal" type="submit" value="Inserir">
         </form>
         <!--  -->
-       
+
         <!--  -->
         <!-- Número de seriais inseridos no palet -->
-        <h5><?= $linhaSeriais ?> seriais inseridos</h5>
-        
+        <h5>
+            <?= $linhaSeriais ?> seriais inseridos
+        </h5>
+
         <a href="inoutPalete.php"><button class="btnModal">Sair do palete</button></a>
         <hr>
+        
         <table id="tbPalet">
             <!-- Título aparece quando houver ao menos um serial inserido -->
             <?php if ($linhaSeriais != 0): ?>
@@ -102,14 +109,15 @@ if($permC == 1){
                         </td>
                         <td style="text-align: center; width: 35px;">
                             <!-- Botão que remove o serial escolhido -->
-                            <a href="procesPalet.php?actionGet=delete&serial_id=<?= $serial_id ?>"><button style="width:25px; font-weight: bold; color: red; border: none; border-radius: 6px;">X</button></a>
+                            <a href="procesPalet.php?actionGet=delete&serial_id=<?= $serial_id ?>"><button
+                                    style="width:25px; font-weight: bold; color: red; border: none; border-radius: 6px;">X</button></a>
                         </td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach ?>
         </table>
         <hr>
-       
+
         <a href="inoutPalete.php"><button class="btnModal">Sair do palete</button></a>
     </div>
 <?php else: ?>
@@ -124,39 +132,99 @@ if($permC == 1){
 
             <div class="cria__palete">
 
-                <input style="display:<?=$display?>;" class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
-                <h3 style="display:<?=$display1?>;" >Você não pode criar um novo palete</h3>
-               
+                <input style="display:<?= $display ?>;" class="btnModal" <?= $desliga ?> type="submit" value="Novo Palete">
+                <h3 style="display:<?= $display1 ?>;">Você não pode criar um novo palete</h3>
+
             </div>
         </form>
 
+        
+        <h3>Paletes não alocados</h3>
+        <table id="tbPalets">
+            <tr style="display:block;">
+                <th width="100px">PALETE ID</th>
+                <th width="150px">SERIAL</th>
+                <th width="300px">DELETAR ALOCAR</th>
+                <th width="150px">POSIÇÃO</th>
+                <th width="150px">DATA</th>
+            </tr>
+            <?php foreach ($retornaPaleteDesalocado as $retPalDesalocado): ?>
+                <?php extract($retPalDesalocado) ?>
+
+                <?php
+                $stmtFesalocado = $conn->prepare("SELECT * FROM posicoes WHERE palete_id = :palete_id");
+                $stmtFesalocado->bindParam(":palete_id", $palete_id);
+                $stmtFesalocado->execute();
+                $linhasDesalocado = $stmtFesalocado->rowCount();
+
+                if ($linhasDesalocado > 0) {
+                    $desabilitaDesalocado = "none";
+
+                } else {
+                    $desabilitaDesalocado = "block";
+
+                }
+                ?>
+
+                <tr style="display:<?= $desabilitaDesalocado ?>;">
+                    <td width="100px">
+                        <strong>
+                            <?= $palete_id ?>
+                        </strong>
+                    </td>
+                    <td width="150px">
+                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button
+                                class="btnModal">Inserir</button></a>
+
+                    </td>
+
+                    <td width="300px">
+                        <a href="procesPalet.php?actionGet=delPalete&serial_id=<?= $palete_id ?>"><button
+                                class="btnModal">Deletar Palete</button></a>
+
+                        <a href="inserirPalet.php?paleteId=<?= $palete_id ?>"><button class="btnModal">Alocar
+                                Palete</button></a>
+                    </td>
+                    <td width="150px">
+                        <h5>Não alocado</h5>
+
+                    </td>
+                    <td width="150px">
+                        <strong>
+                            <?= invertDate($dataPalete) ?>
+                        </strong>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </table>
+
         <hr>
+        <h3>Paletes alocados</h3>
         <table id="tbPalet">
             <tr>
                 <th>PALETE ID</th>
-                <th>SERIAL</th>
-                <!-- <th>MODELO</th> -->
-                <th>DELETAR ALOCAR</th>
+                <th>CONSULTAR PALETE</th>
+               
+                <th>POSIÇÃO</th>
                 <th>DATA</th>
             </tr>
             <?php foreach ($retornaPalete as $retPal): ?>
                 <?php extract($retPal) ?>
 
-                <?php 
-                                $stmt = $conn->prepare("SELECT * FROM posicoes WHERE palete_id = :palete_id");
-                                $stmt->bindParam(":palete_id", $palete_id);
-                                $stmt->execute();
-                                $linhas = $stmt->rowCount();
+                <?php
+                $stmt = $conn->prepare("SELECT * FROM posicoes WHERE palete_id = :palete_id");
+                $stmt->bindParam(":palete_id", $palete_id);
+                $stmt->execute();
+                $linhas = $stmt->rowCount();
 
-                                if($linhas > 0){
-                                    $desabilita = "disabled";
-                                    $valorBtn = "Já alocado";
-                                }else{
-                                    $desabilita = ""; 
-                                    $valorBtn = "Alocar palete";
-                                }
-                                ?>
-
+                if ($linhas > 0) {
+                    $desabilita = "disabled";
+                    $valorBtn = "Já alocado";
+                } else {
+                    $desabilita = "";
+                    $valorBtn = "Alocar palete";
+                }
+                ?>
 
                 <tr>
                     <td>
@@ -165,21 +233,14 @@ if($permC == 1){
                         </strong>
                     </td>
                     <td>
-                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal" <?= $desliga ?>>Inserir</button></a>
+                        <a href="inoutPalete.php?actionPalet=<?= $palete_id ?>"><button  class="btnModal"
+                                <?= $desliga ?>>Consultar</button></a>
 
                     </td>
-                    <!-- <td>
-                        <?= $modelo ?>
-                    </td> -->
+                  
                     <td>
-                        <a href="procesPalet.php?actionGet=delPalete&serial_id=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal"
-                                <?= $desliga ?>>Deletar Palete</button></a>
+                        <?= $posicao ?>
 
-                              
-
-
-                                <a href="inserirPalet.php?paleteId=<?= $palete_id ?>"><button <?= $desabilita ?> class="btnModal"
-                                <?= $desliga ?>><?= $valorBtn ?></button></a>
                     </td>
                     <td>
                         <strong>

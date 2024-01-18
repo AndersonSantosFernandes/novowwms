@@ -29,3 +29,9 @@ function hideModal(){
    
     `
 }
+
+// var caixa01 = document.getElementById("Caixa_01")
+// if(caixa01.value < 100){
+// alert("Estoque de caixa 01 está se esgotando")
+// }
+// console.log(caixa01.value)

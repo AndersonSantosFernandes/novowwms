@@ -55,6 +55,44 @@ else{
 }
 var timeEnd = setInterval(contador,1000)
 //========Fim==================derruba sessão=========================
+
+var caixa1 = document.getElementById("Caixa_01")
+if(caixa1.value < 100){
+alert("Estoque de caixa 01 está se esgotando")
+}
+
+var caixa2 = document.getElementById("Caixa_02")
+if(caixa2.value < 100){
+alert("Estoque de caixa 02 está se esgotando")
+}
+
+var caixa3 = document.getElementById("Caixa_03")
+if(caixa3.value < 100){
+alert("Estoque de caixa 03 está se esgotando")
+}
+
+var caixa15 = document.getElementById("Caixa_15")
+if(caixa15.value < 100){
+alert("Estoque de caixa 15 está se esgotando")
+}
+
+var caixa17 = document.getElementById("Caixa_17")
+if(caixa17.value < 100){
+alert("Estoque de caixa 17 está se esgotando")
+}
+
+var caixa18 = document.getElementById("Caixa_18")
+if(caixa18.value < 100){
+alert("Estoque de caixa 18 está se esgotando")
+}
+
+var caixa21 = document.getElementById("Caixa_21")
+if(caixa21.value < 100){
+alert("Estoque de caixa 21 está se esgotando")
+}
+
+
+
 </script>
 </body>
 </html>

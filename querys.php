@@ -7,10 +7,16 @@ if(isset($_SESSION['palet'])){
 $paletLog = $_SESSION['palet'];
 }
 
-// Query que retorna os paletes ativos
-$stmtPalete = $conn->query("SELECT*FROM paletes");
+// Query que retorna os paletes alocados
+$stmtPalete = $conn->query("SELECT * FROM paletes pa INNER JOIN posicoes po WHERE pa.palete_id = po.palete_id");
 $stmtPalete->execute();
 $retornaPalete = $stmtPalete->fetchAll(PDO::FETCH_ASSOC);
+
+// Query que retorna os paletes não alocados
+$stmtPaleteDesalocado = $conn->query("SELECT * FROM paletes");
+$stmtPaleteDesalocado->execute();
+$retornaPaleteDesalocado = $stmtPaleteDesalocado->fetchAll(PDO::FETCH_ASSOC);
+
 
 // Query que retorna apena os seriais pertencentes ao palete ativo na sessão
 $stmtSerial = $conn->prepare("SELECT*FROM seriais WHERE palete_id = :palete_id");
