@@ -502,9 +502,19 @@ font-family: Arial, Helvetica, sans-serif;
    flex-direction: column;
     /* border: 1px solid purple; */
 }
-/* .campo1{
-    grid-area: campo1;
-} */
+
+
+/* Modal na página embalagens */
+
+.inModall{
+    width: 100%;
+    height: 450px;
+    background-color: var(--colorRow);
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+
 @media(min-width:1080px) {
     .div__grid{
     /* border: 1px solid purple; */

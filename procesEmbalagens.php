@@ -7,7 +7,12 @@ $mensagens = new Message();
 
 $action = filter_input(INPUT_POST, "action");
 $modelo = filter_input(INPUT_POST, "modelo");
+
 $quantidadeAlterada = filter_input(INPUT_POST, "quantidadeAlterada");
+$operacao = filter_input(INPUT_POST, "operacao");
+$usuario = filter_input(INPUT_POST, "usuario");
+$alterada = $quantidadeAlterada;
+$reporModelo = $modelo;
 
 if ($action == "reporEmbalagem") {
 
@@ -36,6 +41,14 @@ if($modelo && $quantidadeAlterada) {
         $stmtSubtrair->bindParam(":quantidade",$subtracao);
         $stmtSubtrair->execute();
 
+         $stmtLog = $conn->prepare("INSERT INTO log_insumos (modelo, acao, quantidade, usuario, data)
+            VALUES(:modelo, :acao, :quantidade, :usuario, CURRENT_DATE ) ");
+            $stmtLog->bindparam(":modelo",$reporModelo);
+            $stmtLog->bindparam(":acao",$operacao);
+            $stmtLog->bindparam(":quantidade",$alterada);
+            $stmtLog->bindparam(":usuario",$usuario);
+            $stmtLog->execute();
+
         $mensagens->setMessage("Subtraido com sucesso","win");
     }
 
@@ -46,6 +59,7 @@ $mensagens->setMessage("Selecione o modelo ","fall");
 header("location:embalagens.php");
 }
 elseif($action == "reporCaixas") {
+
 
     if($modelo && $quantidadeAlterada) {
 
@@ -61,11 +75,20 @@ elseif($action == "reporCaixas") {
     
             $adicao = $qtEstoque + $quantidadeAlterada;
             
-    
+    //ainda falta colocar a coluna com a quantidade reposta e adicionar nas querys
             $stmtRepor = $conn->prepare("UPDATE modelos SET quantidade = :quantidade WHERE modelo = :modelo  ");
             $stmtRepor->bindParam(":modelo",$modelo);
             $stmtRepor->bindParam(":quantidade",$adicao);
             $stmtRepor->execute();
+
+
+            $stmtLog = $conn->prepare("INSERT INTO log_insumos (modelo, acao, quantidade, usuario, data)
+            VALUES(:modelo, :acao, :quantidade, :usuario, CURRENT_DATE ) ");
+            $stmtLog->bindparam(":modelo",$reporModelo);
+            $stmtLog->bindparam(":acao",$operacao);
+            $stmtLog->bindparam(":quantidade",$alterada);
+            $stmtLog->bindparam(":usuario",$usuario);
+            $stmtLog->execute();
     
             $mensagens->setMessage("Alterado com sucesso","win");
         }

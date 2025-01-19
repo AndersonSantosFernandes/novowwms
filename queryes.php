@@ -20,13 +20,13 @@ $stmtColor->bindParam(":email",$_SESSION["user"]);
 $stmtColor->execute();
 $lineColor = $stmtColor->fetch();
 
-// Querye para retornar todos os modelos
+// Query para retornar todos os modelos
 
 $stmtModelos = $conn->query("SELECT * FROM modelos ORDER BY modelo");
 $stmtModelos->execute();
 $returnModel = $stmtModelos->fetchAll(PDO::FETCH_ASSOC);
 
-// Querye para retornar todos os status
+// Query para retornar todos os status
 $stmtStatus = $conn->query("SELECT * FROM status_list ORDER BY status");
 $stmtStatus->execute();
 $returnStatus = $stmtStatus->fetchAll(PDO::FETCH_ASSOC);
@@ -38,6 +38,8 @@ $returnStatus = $stmtStatus->fetchAll(PDO::FETCH_ASSOC);
 $stmtInformacoesAlocamento = $conn->query("SELECT * FROM listainformacoescadastrar ORDER BY informacao");
 $stmtInformacoesAlocamento->execute();
 $linhasInformacao = $stmtInformacoesAlocamento->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 // Query que retorna o tempo de sessão
 $stmtTempo = $conn->query("SELECT * FROM sessao");

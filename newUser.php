@@ -2,7 +2,7 @@
 include_once("templates/header.php");
 include_once("conexao.php");
 include_once("queryes.php");
-include_once("verify_login.php");
+// include_once("verify_login.php");
 include_once("permitions.php");
 
 $minutoss = $tempo / 60;
@@ -86,7 +86,8 @@ $minutoss = $tempo / 60;
 
                 
                 <select class="puts" name="minSessao" id="minSessao">
-                    <option value="300">05</option>
+                <option value="300"><?= $minutoss ?></option> 
+                <option value="300">05</option>
                     <option value="600">10</option>
                     <option value="900">15</option>
                     <option value="1200">20</option>
@@ -184,6 +185,17 @@ $minutoss = $tempo / 60;
                 <input type="hidden" name="action" value="cadModelo">
 
                 <input class="puts" type="text" name="nomeModelo" id="nomeModelo">
+            <!--  -->
+                <select class="puts" name="cadTipoMod" id="editAlocamento">
+                        <?php foreach ($linhasInformacao as $information): ?>
+                            <?php extract($information) ?>
+
+                            <?php if ($tipo_informacao == "itemModelo"): ?>
+                                <option value="<?= $informacao ?>"> <?= $informacao ?> </option>
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+                    </select>
 
                 <input class="btnModal" type="submit" value="Salvar modelo">
                 <button class="btnModal"><a href="modelos.php?editAction=modelo">Editar</a></button>

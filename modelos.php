@@ -78,8 +78,9 @@ if ($permC == 1) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-           
+           <!-- Edição de item modelo -->
                 <?php elseif ($editAction == "alocamento"): ?>
+
                     <form action="editModel.php" method="post">
                         <input type="hidden" name="action" value="editAloc">
                     <select class="puts" name="editAlocamento" id="editAlocamento">

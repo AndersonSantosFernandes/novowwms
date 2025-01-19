@@ -10,7 +10,7 @@ class Message
 
     }
 
-    public function getMessage() 
+    public function getMessage()  
     {
 
         if (!empty($_SESSION["mensage"])) {

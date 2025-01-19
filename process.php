@@ -37,13 +37,13 @@ $returnFulName = filter_input(INPUT_POST, "returnFulName");
 $direction = filter_input(INPUT_POST, "direcao");
 $palete_id = filter_input(INPUT_POST, "palete_id");
 
-if(isset($palete_id)){
-$alocarPalete = $palete_id;
-}else{
-   $alocarPalete = 0; 
+if ($palete_id) {
+    $alocarPalete = $palete_id;
+} else {
+    $alocarPalete = null;
 }
 
-
+$cadTipoMod = filter_input(INPUT_POST, "cadTipoMod");
 // var_dump($modelo);
 // exit;
 //Gerenciamento de permissões
@@ -70,7 +70,7 @@ $btnMain = filter_input(INPUT_POST, "btnMain");
 // Cadastrar novo modelo
 $cadNewModel = filter_input(INPUT_POST, "nomeModelo");
 
-$id_modelo = filter_input(INPUT_POST, "id_modelo");//recebe posicao_id em outro processamento
+$id_modelo = filter_input(INPUT_POST, "id_modelo"); //recebe posicao_id em outro processamento
 $status_id = filter_input(INPUT_POST, "status_id");
 
 
@@ -143,8 +143,9 @@ if ($action === "novaPosicao") {
 } elseif ($action == "newPallet") { //Query que salva um pallet na posição
 // var_dump($palete_id);
 
-// exit;
+    // exit;
     if ($modelo && $status && $fullPosition) {
+
         $stmt = $conn->prepare("UPDATE posicoes SET  modelo = :modelo, status = :status, 
         nota = :nota, quantidade = :quantidade, itemModelo = :itemModelo,
         unudMedida = :unudMedida, contratante = :contratante, operacao = :operacao,
@@ -184,19 +185,19 @@ if ($action === "novaPosicao") {
 
 } elseif ($action == "retirarPalet") {
 
-   
+
     $stmt = $conn->prepare("UPDATE posicoes SET  modelo = '', status = '', 
         nota = '', quantidade = 0, itemModelo = '', unudMedida = '', contratante = '', operacao = '',
         origem = '', destino = '', observacao = '', estado = :estado, 
         dataModificacao = CURRENT_DATE, usuario = :usuario, palete_id = null WHERE posicao = :posicao");
-   
+
     $stmt->bindParam(":estado", $estado);
     $stmt->bindParam(":posicao", $fullPosition);
     $stmt->bindParam("usuario", $returnFulName);
     $stmt->execute();
 
 
-   
+
 
     $mensagens->setMessage("Pallet desalocado com sucesso !!!", "win");
     header("location:buscarPalet.php");
@@ -287,8 +288,9 @@ if ($action === "novaPosicao") {
 } elseif ($action === "cadModelo") {
 
     if (strlen($cadNewModel) > 5) {
-        $stmt = $conn->prepare("INSERT INTO modelos (modelo) VALUES (:modelo)");
+        $stmt = $conn->prepare("INSERT INTO modelos (modelo, tipo) VALUES (:modelo, :tipo)");
         $stmt->bindParam(":modelo", $cadNewModel);
+        $stmt->bindParam(":tipo", $cadTipoMod);
         $stmt->execute();
 
         $mensagens->setMessage("O modelo " . $cadNewModel . " foi cadastrado com sucesso!", "win");
@@ -357,73 +359,72 @@ if ($action === "novaPosicao") {
 
     header("location:status.php");
 
-}elseif($action == "salvarInformacao"){
+} elseif ($action == "salvarInformacao") {
 
-if($information){
+    if ($information) {
 
-    $informationUpper = strtoupper($information);//Transforma a string toa em maiúscula.
+        $informationUpper = strtoupper($information); //Transforma a string toa em maiúscula.
 
-    $stmt = $conn->prepare("INSERT INTO listainformacoescadastrar(tipo_informacao,informacao)
+        $stmt = $conn->prepare("INSERT INTO listainformacoescadastrar(tipo_informacao,informacao)
     VALUES(:tipo_informacao,:informacao)
     ");
-    $stmt->bindParam(":tipo_informacao",$informacaoTipo);
-    $stmt->bindParam(":informacao",$informationUpper);
-    $stmt->execute();
-
-
-    $mensagens->setMessage($informationUpper . " adicionado com cucesso <strong>!</strong>", "win");
-    
-}else{
-
-
-    $mensagens->setMessage("Preencah o campo corretamente</strong>", "fall");
-}
-
-header("location:newUser.php");
-}elseif($action == "editInfAloc"){
-// echo $id_modelo . "<br>" . $informacaoTipo . "<br>" . $information;
-$modeloUp = strtoupper($id_modelo);
-$stmt = $conn->prepare("UPDATE listainformacoescadastrar SET tipo_informacao = :tipo_informacao , informacao = :informacao WHERE informacao_id = :informacao_id");
-$stmt->bindParam(":tipo_informacao",$informacaoTipo);
-$stmt->bindParam(":informacao",$information);
-$stmt->bindParam(":informacao_id", $modeloUp);
-$stmt->execute();
-
-$mensagens->setMessage("Alterado com sucesso para " .$information. " <strong>!</strong>", "win");
-
-header("location:newUser.php");
-
-}elseif($action == "bloquearPosicao"){
-
-    if($id_modelo){
-
-        $stmt = $conn->prepare("UPDATE posicoes SET estado = :estado WHERE posicao_id = :posicao_id");
-        $stmt->bindParam(":estado",$estado);
-        $stmt->bindParam(":posicao_id",$id_modelo);
+        $stmt->bindParam(":tipo_informacao", $informacaoTipo);
+        $stmt->bindParam(":informacao", $informationUpper);
         $stmt->execute();
-        
-        $mensagens->setMessage("Posição está ".$estado,"win");
 
-    }else{
-        $mensagens->setMessage("Selecione uma opção na lista","fall");
+
+        $mensagens->setMessage($informationUpper . " adicionado com cucesso <strong>!</strong>", "win");
+
+    } else {
+
+
+        $mensagens->setMessage("Preencah o campo corretamente</strong>", "fall");
     }
 
-header("location:newUser.php");
+    header("location:newUser.php");
+} elseif ($action == "editInfAloc") {
+    // echo $id_modelo . "<br>" . $informacaoTipo . "<br>" . $information;
+    $modeloUp = strtoupper($id_modelo);
+    $stmt = $conn->prepare("UPDATE listainformacoescadastrar SET tipo_informacao = :tipo_informacao , informacao = :informacao WHERE informacao_id = :informacao_id");
+    $stmt->bindParam(":tipo_informacao", $informacaoTipo);
+    $stmt->bindParam(":informacao", $information);
+    $stmt->bindParam(":informacao_id", $modeloUp);
+    $stmt->execute();
 
-}elseif($action == "mudaTempoSessao"){
+    $mensagens->setMessage("Alterado com sucesso para " . $information . " <strong>!</strong>", "win");
 
-$stmt = $conn->prepare("UPDATE sessao SET minutos = :minutos");
-$stmt->bindParam(":minutos",$minSessao);
-$stmt->execute();
+    header("location:newUser.php");
 
-$mensagens->setMessage("Tempo alterado com sucesso","win");
-header("location:newUser.php");
-}
-elseif($action2 == "delUser"){
+} elseif ($action == "bloquearPosicao") {
 
-echo $userEmail;
+    if ($id_modelo) {
+
+        $stmt = $conn->prepare("UPDATE posicoes SET estado = :estado WHERE posicao_id = :posicao_id");
+        $stmt->bindParam(":estado", $estado);
+        $stmt->bindParam(":posicao_id", $id_modelo);
+        $stmt->execute();
+
+        $mensagens->setMessage("Posição está " . $estado, "win");
+
+    } else {
+        $mensagens->setMessage("Selecione uma opção na lista", "fall");
+    }
+
+    header("location:newUser.php");
+
+} elseif ($action == "mudaTempoSessao") {
+
+    $stmt = $conn->prepare("UPDATE sessao SET minutos = :minutos");
+    $stmt->bindParam(":minutos", $minSessao);
+    $stmt->execute();
+
+    $mensagens->setMessage("Tempo alterado com sucesso", "win");
+    header("location:newUser.php");
+} elseif ($action2 == "delUser") {
+
+    echo $userEmail;
     $stmt = $conn->prepare("DELETE FROM users WHERE email = :email  ");
-    $stmt->bindParam(":email",$userEmail);
+    $stmt->bindParam(":email", $userEmail);
     $stmt->execute();
 
     $mensagens->setMessage("O usuário $userEmail foi deletado  <a href=''>X</a>", "win");

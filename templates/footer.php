@@ -17,12 +17,12 @@ $(document).ready(function() {
 });
 
 //===Inicio=============Trcho de código que derruba a sessão após ficar certo tempo inativo
-num = <?= $tempo?> //Trmpo que vem do BD
+num = <?= $tempo?> //Tempo que vem do BD
 
 
 time = num/60
 
-function resetTime(){
+function resetTime(){// Chamada a cada carregaento de página com o método 'onload' na tag body
     cont = num
 }
 

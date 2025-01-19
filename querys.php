@@ -30,4 +30,12 @@ $stmtPosicao = $conn->query("SELECT * FROM posicoes");
 $stmtPosicao->execute();
 $retornaPosicao = $stmtPosicao->fetchAll(PDO::FETCH_ASSOC);
 
+
+// Query que retorna ações de movimentações de insumos
+
+$stmtInsumos = $conn->query("SELECT * FROM log_insumos");
+$stmtInsumos->execute();
+$retornaInsumos = $stmtInsumos->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
